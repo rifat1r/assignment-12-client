@@ -6,6 +6,8 @@ import Home from "../Page/Home/Home";
 import AllClasses from "../Page/AllClasses/AllClasses";
 import Dashboard from "../Layout/Dashboard";
 import AllUsers from "../Page/Dashboard/AllUsers";
+import TeachFrom from "../Page/TeachForm/TeachFrom";
+import TeacherRequest from "../Page/TeacherRequest/TeacherRequest";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/teach",
+        element: <TeachFrom></TeachFrom>,
       },
       {
         path: "/allClasses",
@@ -37,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "allUsers",
         element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "teacherRequest",
+        element: <TeacherRequest></TeacherRequest>,
       },
     ],
   },

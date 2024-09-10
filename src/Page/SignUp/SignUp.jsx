@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import usePostUser from "../../hooks/usePostUser";
 import SocialLogin from "../../Components/SocialLogin";
+import { updateProfile } from "firebase/auth";
+import auth from "../../firebase/firebase.config";
 
 const SignUp = () => {
   const { createUser } = useAuth();
@@ -18,14 +20,19 @@ const SignUp = () => {
     console.log(data);
     createUser(data.email, data.password)
       .then(async (result) => {
-        reset();
+        updateProfile(auth.currentUser, {
+          displayName: data.name,
+          photoURL: data.image,
+        }).then(async () => {
+          reset();
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
+          // Post the user info
+          await postUserInfo(userInfo);
+        });
         console.log(result.user);
-        const userInfo = {
-          name: data.name,
-          email: data.email,
-        };
-        // Post the user info
-        await postUserInfo(userInfo);
       })
       .catch((error) => {
         console.log(error.message);
