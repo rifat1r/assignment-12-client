@@ -68,7 +68,6 @@ const Dashboard = () => {
             )}
             {user && isTeacher && (
               <>
-                <div className="divider"></div>
                 <li>
                   <NavLink to="/dashboard/addClass">Add Class</NavLink>
                 </li>

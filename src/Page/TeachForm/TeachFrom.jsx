@@ -3,12 +3,19 @@ import { FaUpload } from "react-icons/fa";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useTeacher from "../../hooks/useTeacher";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+import { useEffect } from "react";
 
 const image_hosting_key = import.meta.env.VITE_IMGBB_PK;
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const TeachFrom = () => {
+  const navigate = useNavigate();
+  const [requestStatus] = useTeacher();
+  console.log("status-------", requestStatus);
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const {
@@ -17,6 +24,30 @@ const TeachFrom = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  useEffect(() => {
+    if (requestStatus === "rejected") {
+      Swal.fire({
+        title: "Your request have been rejected!",
+        text: "You can try to another",
+        icon: "info",
+      });
+    }
+    if (requestStatus === "pending") {
+      Swal.fire({
+        title: "Thanks for your submission!",
+        text: "Your request being reviewed by our team",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Go Back",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate(-1);
+        }
+      });
+    }
+  }, [requestStatus, navigate]);
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -46,10 +77,51 @@ const TeachFrom = () => {
           title: "Your request has been submitted",
           showConfirmButton: false,
           timer: 1500,
+        }).then(() => {
+          window.location.reload();
         });
       }
     }
   };
+
+  if (requestStatus === "approved") {
+    return (
+      <div className="hero bg-base-200 min-h-screen">
+        <div className="hero-content flex-col md:flex-row">
+          <img
+            src={
+              user?.photoURL
+                ? user.photoURL
+                : "https://i.ibb.co.com/VWLjs5S/453178253-471506465671661-2781666950760530985-n.png"
+            }
+            className="max-w-sm rounded-lg shadow-2xl"
+          />
+          <div>
+            <h1 className="text-5xl font-bold">
+              Congratulations,{" "}
+              <span className="text-lime-500">{user.displayName}</span>
+            </h1>
+            <p className="py-6 text-2xl font-normal text-gray-400">
+              Your request to become a teacher has been approved. Welcome to our
+              teaching team!
+            </p>
+            {/* <button className="btn btn-primary">Add Class</button> */}
+            <div className="space-x-7">
+              <Button variant="contained">Add Class</Button>
+              <Button
+                onClick={() => {
+                  navigate(-1);
+                }}
+                variant="outlined"
+              >
+                GO BAck
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="max-w-5xl mx-auto ">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -145,9 +217,13 @@ const TeachFrom = () => {
         )}
 
         <div className="text-end">
-          <button className="btn btn-accent my-5 text-white">
+          <button
+            disabled={requestStatus === "pending"}
+            className="btn btn-accent my-5 text-white"
+          >
             <FaUpload></FaUpload>
-            Submit for review
+            {requestStatus === "not_found" && "Submit for review"}
+            {requestStatus === "rejected" && "Request to another"}
           </button>
         </div>
       </form>

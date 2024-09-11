@@ -1,8 +1,10 @@
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgMenuLeft } from "react-icons/cg";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const { logout, user } = useAuth();
   const navLinks = (
     <>
       <li>
@@ -76,13 +78,17 @@ const Navbar = () => {
               <div className="w-10 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  src={user?.photoURL}
+                  onError={(e) => {
+                    e.target.src =
+                      "https://i.ibb.co.com/VWLjs5S/453178253-471506465671661-2781666950760530985-n.png";
+                  }}
                 />
               </div>
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-36 p-2 shadow"
             >
               <li>
                 <a className="justify-between">
@@ -94,11 +100,23 @@ const Navbar = () => {
                 <NavLink to="/dashboard">Dashboard</NavLink>
               </li>
               <li>
-                <a>Settings</a>
+                <NavLink to="/signup">Sign Up</NavLink>
               </li>
-              <li>
-                <a>Logout</a>
-              </li>
+              {user ? (
+                <li>
+                  <a
+                    onClick={() => {
+                      logout().then();
+                    }}
+                  >
+                    Logout
+                  </a>
+                </li>
+              ) : (
+                <li>
+                  <NavLink to="/signin">Login</NavLink>
+                </li>
+              )}
             </ul>
           </div>
         </div>
