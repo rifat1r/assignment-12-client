@@ -60,7 +60,6 @@ const SignUp = () => {
                 {...register("name", {
                   required: true,
                 })}
-                id="outlined-basic"
                 label="Name"
                 variant="outlined"
               />
@@ -73,7 +72,6 @@ const SignUp = () => {
                 {...register("image", {
                   required: true,
                 })}
-                id="outlined-basic"
                 label="Image"
                 variant="outlined"
               />
@@ -86,7 +84,6 @@ const SignUp = () => {
                 {...register("email", {
                   required: true,
                 })}
-                id="outlined-basic"
                 label="Email"
                 variant="outlined"
               />
@@ -103,7 +100,6 @@ const SignUp = () => {
                   minLength: 6,
                   pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                 })}
-                id="outlined-basic"
                 label="Password"
                 variant="outlined"
               />

@@ -66,7 +66,7 @@ const Dashboard = () => {
                 </li>
               </>
             )}
-            {user && isTeacher && (
+            {user && isTeacher === "approved" && (
               <>
                 <li>
                   <NavLink to="/dashboard/addClass">Add Class</NavLink>

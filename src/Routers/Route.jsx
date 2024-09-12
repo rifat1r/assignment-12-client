@@ -8,6 +8,7 @@ import Dashboard from "../Layout/Dashboard";
 import AllUsers from "../Page/Dashboard/AllUsers";
 import TeachFrom from "../Page/TeachForm/TeachFrom";
 import TeacherRequest from "../Page/TeacherRequest/TeacherRequest";
+import AddClass from "../Page/AddClass/AddClass";
 
 const router = createBrowserRouter([
   {
@@ -48,8 +49,15 @@ const router = createBrowserRouter([
         path: "teacherRequest",
         element: <TeacherRequest></TeacherRequest>,
       },
+
+      // teachers routes
+      {
+        path: "addClass",
+        element: <AddClass></AddClass>,
+      },
     ],
   },
+  {},
 ]);
 
 export default router;
