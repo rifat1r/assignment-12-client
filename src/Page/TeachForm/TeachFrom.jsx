@@ -134,7 +134,7 @@ const TeachFrom = () => {
               type="text"
               placeholder="Name"
               defaultValue={user?.displayName}
-              disabled
+              readOnly
               className="input input-bordered"
             />
           </div>
@@ -146,7 +146,7 @@ const TeachFrom = () => {
               type="email"
               placeholder="email"
               defaultValue={user?.email}
-              disabled
+              readOnly
               className="input input-bordered"
             />
           </div>

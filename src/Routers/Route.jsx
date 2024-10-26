@@ -9,6 +9,9 @@ import AllUsers from "../Page/Dashboard/AllUsers";
 import TeachFrom from "../Page/TeachForm/TeachFrom";
 import TeacherRequest from "../Page/TeacherRequest/TeacherRequest";
 import AddClass from "../Page/AddClass/AddClass";
+import AllClass from "../Page/Dashboard/AllClass";
+import MyClass from "../Page/Dashboard/MyClass";
+import ClassDetails from "../Page/ClassDetails/ClassDetails";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,10 @@ const router = createBrowserRouter([
         element: <AllClasses></AllClasses>,
       },
       {
+        path: "/allClass/:id",
+        element: <ClassDetails></ClassDetails>,
+      },
+      {
         path: "/signUp",
         element: <SignUp></SignUp>,
       },
@@ -41,6 +48,7 @@ const router = createBrowserRouter([
     path: "dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      //admin routes
       {
         path: "allUsers",
         element: <AllUsers></AllUsers>,
@@ -49,11 +57,20 @@ const router = createBrowserRouter([
         path: "teacherRequest",
         element: <TeacherRequest></TeacherRequest>,
       },
+      {
+        path: "allClass",
+        element: <AllClass></AllClass>,
+      },
 
       // teachers routes
       {
         path: "addClass",
         element: <AddClass></AddClass>,
+      },
+
+      {
+        path: "myClass",
+        element: <MyClass></MyClass>,
       },
     ],
   },

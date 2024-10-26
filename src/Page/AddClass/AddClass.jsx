@@ -2,18 +2,20 @@ import Swal from "sweetalert2";
 import Class from "../../Components/Class";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useUploadImage from "../../hooks/useUploadImage";
+import useAuth from "../../hooks/useAuth";
 
 const AddClass = () => {
+  const { user } = useAuth();
   const { uploadImage } = useUploadImage();
   const axiosSecure = useAxiosSecure();
   const handlePost = async (data) => {
-    // console.log("form data", data);
+    console.log("addclass is triggered");
 
     const imageFile = data.image[0];
     if (imageFile) {
       const imageURL = await uploadImage(imageFile);
       console.log("imageURL", imageURL);
-      data.image = imageURL;
+      data.image = user.photoURL;
       console.log("modified", data);
       if (imageURL) {
         const res = await axiosSecure.post("/class", data);
@@ -32,7 +34,11 @@ const AddClass = () => {
     }
   };
 
-  return <Class setFormData={handlePost}></Class>;
+  return (
+    <div className="w-full lg:w-3/4 mx-auto">
+      <Class action={"Add Class"} getFormData={handlePost}></Class>
+    </div>
+  );
 };
 
 export default AddClass;
