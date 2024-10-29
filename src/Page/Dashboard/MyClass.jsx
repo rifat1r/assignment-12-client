@@ -2,9 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { Button, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import Swal from "sweetalert2";
-import DescriptionModal from "../../Components/DescriptionModal";
 import UpdateClass from "./UpdateClass";
 import { useState } from "react";
 
@@ -60,7 +59,7 @@ const MyClass = () => {
               <div className="avatar">
                 <div className="mask mask-circle h-14 w-14">
                   <img
-                    src={aClass?.techerImg}
+                    src={aClass?.teacherImg}
                     onError={(e) => {
                       e.target.src =
                         "https://i.ibb.co.com/VWLjs5S/453178253-471506465671661-2781666950760530985-n.png";
@@ -83,7 +82,7 @@ const MyClass = () => {
             </figure>
             <div className="card-body">
               <h2 className="card-title">{aClass.title}</h2>
-              <p className="text-lg ">price : ${aClass.price}</p>
+              <p className="text-lg text-blue-500">Price : ${aClass.price}</p>
               <div className="flex justify-between items-center">
                 <div className="flex gap-3 text-xl">
                   <IconButton
@@ -112,17 +111,16 @@ const MyClass = () => {
                 </button>
               </div>
             </div>
-            <Button
-              sx={{ m: 1 }}
-              variant="contained"
-              onClick={() => document.getElementById("my_modal_1").showModal()}
-              size="small"
-            >
-              Description
-            </Button>
-            <DescriptionModal
-              description={aClass.description}
-            ></DescriptionModal>
+
+            <div tabIndex={0} className="collapse collapse-arrow ">
+              <input type="checkbox" />
+              <div className="collapse-title text-xl font-medium">
+                DESCRIPTION
+              </div>
+              <div className="collapse-content">
+                <p>{aClass.description}</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>

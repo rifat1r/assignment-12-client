@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { MdOutlinePendingActions } from "react-icons/md";
+import Status from "../../Components/Status";
 
 const TeacherRequest = () => {
   const axiosSecure = useAxiosSecure();
@@ -110,26 +111,7 @@ const TeacherRequest = () => {
                 <td>{request.category}</td>
 
                 <td>
-                  <div>
-                    {request.status ? (
-                      request.status === "approved" ? (
-                        <div className="badge bg-green-400 gap-2">
-                          <FaCheck />
-                          Approved
-                        </div>
-                      ) : (
-                        <div className="badge badge-error gap-2 ">
-                          <ImCross />
-                          Rejected
-                        </div>
-                      )
-                    ) : (
-                      <div className="badge badge-outline gap-2">
-                        <MdOutlinePendingActions />
-                        Pending
-                      </div>
-                    )}
-                  </div>
+                  <Status status={request.status}></Status>
                 </td>
                 <td>
                   <button

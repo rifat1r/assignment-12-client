@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Button } from "@mui/material";
 
 const ClassDetails = () => {
   const axiosSecure = useAxiosSecure();
@@ -8,7 +9,7 @@ const ClassDetails = () => {
   const { data: aClass = {} } = useQuery({
     queryKey: ["aClass", id],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/classes/${id}`);
+      const res = await axiosSecure.get(`/class/${id}`);
       return res.data;
     },
   });
@@ -28,10 +29,18 @@ const ClassDetails = () => {
         <div className="w-2/3  space-y-2">
           <h2 className="text-3xl">{aClass.title}</h2>
           <p>{aClass.description}</p>
+          <div>
+            <Link
+              to="/payment"
+              state={{ price: aClass.price, classId: aClass._id }}
+            >
+              <Button variant="contained"> Pay Now</Button>
+            </Link>
+          </div>
         </div>
       </div>
       {/* teacher */}
-      <div className="flex gap-3 mt-6  border p-5">
+      <div className="flex gap-3 mt-6  border p-5 bg-slate-200">
         <div className="avatar">
           <div className="h-20 w-20">
             <img src={teacher.image} />
@@ -39,7 +48,12 @@ const ClassDetails = () => {
         </div>
         <div className="my-auto">
           <h2 className="text-2xl font-semibold">{teacher.name}</h2>
-          <p className="text-slate-400">{teacher.title}</p>
+          <p className="text-blue-400">{teacher.title}</p>
+          <div className="flex gap-1">
+            <p>{teacher.category}</p>
+            <span>|</span>
+            <p>{teacher.experience}</p>
+          </div>
         </div>
       </div>
     </div>

@@ -3,11 +3,12 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Button } from "@mui/material";
 import DescriptionModal from "../../Components/DescriptionModal";
 import Swal from "sweetalert2";
+import Status from "../../Components/Status";
 
 const AllClass = () => {
   const axiosSecure = useAxiosSecure();
   const { data: allClass = [], refetch } = useQuery({
-    queryKey: ["allClass"],
+    queryKey: ["classes"],
     queryFn: async () => {
       const res = await axiosSecure.get("/class");
       return res.data;
@@ -72,6 +73,7 @@ const AllClass = () => {
             <td>Title</td>
             <td>Email</td>
             <td>Description</td>
+            <td>Status</td>
             <td>Approve</td>
             <td>Reject</td>
             <th>See Progress</th>
@@ -106,6 +108,9 @@ const AllClass = () => {
                 ></DescriptionModal>
               </td>
               <td>
+                <Status status={aClass.status}></Status>
+              </td>
+              <td>
                 <Button
                   onClick={() => handleApprove(aClass)}
                   variant="outlined"
@@ -132,9 +137,7 @@ const AllClass = () => {
               </td>
               <th>
                 <Button
-                  disabled={
-                    aClass.status !== "approved" && aClass.status !== "rejected"
-                  }
+                  disabled={aClass.status !== "approved"}
                   variant="contained"
                   size="small"
                 >

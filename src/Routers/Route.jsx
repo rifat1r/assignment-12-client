@@ -12,6 +12,7 @@ import AddClass from "../Page/AddClass/AddClass";
 import AllClass from "../Page/Dashboard/AllClass";
 import MyClass from "../Page/Dashboard/MyClass";
 import ClassDetails from "../Page/ClassDetails/ClassDetails";
+import Payment from "../Page/Dashboard/Payments/Payment";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/allClass/:id",
         element: <ClassDetails></ClassDetails>,
+      },
+      {
+        path: "/payment",
+        element: <Payment></Payment>,
       },
       {
         path: "/signUp",

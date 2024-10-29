@@ -15,7 +15,8 @@ const AddClass = () => {
     if (imageFile) {
       const imageURL = await uploadImage(imageFile);
       console.log("imageURL", imageURL);
-      data.image = user.photoURL;
+      data.image = imageURL;
+      data.teacherImg = user.photoURL;
       console.log("modified", data);
       if (imageURL) {
         const res = await axiosSecure.post("/class", data);
