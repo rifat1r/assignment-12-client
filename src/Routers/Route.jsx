@@ -13,6 +13,9 @@ import AllClass from "../Page/Dashboard/AllClass";
 import MyClass from "../Page/Dashboard/MyClass";
 import ClassDetails from "../Page/ClassDetails/ClassDetails";
 import Payment from "../Page/Dashboard/Payments/Payment";
+import MyEnrollClass from "../Page/Dashboard/MyEnrollClass";
+import MyEnrollClassDetails from "../Page/Dashboard/MyEnrollClassDetails";
+import MyClassDetails from "../Page/Dashboard/MyClass/MyClassDetails";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +79,19 @@ const router = createBrowserRouter([
       {
         path: "myClass",
         element: <MyClass></MyClass>,
+      },
+      {
+        path: "myClass/:id",
+        element: <MyClassDetails></MyClassDetails>,
+      },
+      // student routes
+      {
+        path: "myEnrollClass",
+        element: <MyEnrollClass></MyEnrollClass>,
+      },
+      {
+        path: "myEnrollClassDetails/:id",
+        element: <MyEnrollClassDetails></MyEnrollClassDetails>,
       },
     ],
   },

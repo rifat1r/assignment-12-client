@@ -1,4 +1,4 @@
-import { FaBook, FaHome, FaListAlt, FaUsers } from "react-icons/fa";
+import { FaBook, FaHome, FaListAlt, FaUserPlus, FaUsers } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { NavLink, Outlet } from "react-router-dom";
@@ -76,6 +76,19 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <NavLink to="/dashboard/profile">Profile</NavLink>
+                </li>
+              </>
+            )}
+            {user && !isAdmin && isTeacher !== "approved" && (
+              <>
+                <li>
+                  <NavLink to="/dashboard/myEnrollClass">
+                    <FaUserPlus></FaUserPlus>
+                    My enroll class
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/profile">Profile</NavLink>
                 </li>
               </>
             )}

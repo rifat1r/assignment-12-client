@@ -66,7 +66,7 @@ const CheckoutForm = ({ price, classId }) => {
         const payment = {
           email: user?.email,
           price: price,
-          transactionId: transactionId,
+          transactionId: paymentIntent.id,
           date: new Date(),
           classId: classId,
         };
@@ -106,7 +106,12 @@ const CheckoutForm = ({ price, classId }) => {
         }}
       />
       <button className="btn btn-primary btn-sm">pay</button>
-      <p>{error.message}</p>
+      <p>{error}</p>
+      {transactionId && (
+        <h2 className="text-center text-xl text-red-500">
+          Transaction id : {transactionId}
+        </h2>
+      )}
     </form>
   );
 };

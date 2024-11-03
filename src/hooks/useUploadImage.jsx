@@ -16,7 +16,7 @@ const useUploadImage = () => {
           "content-type": "multipart/form-data",
         },
       });
-      console.log("upload image works------", imgRes.data);
+      // console.log("upload image works------", imgRes.data);
       return imgRes.data.data.display_url;
     }
     return () => {

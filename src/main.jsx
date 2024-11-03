@@ -13,7 +13,9 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <RouterProvider router={router}></RouterProvider>
+        <div className="max-w-7xl mx-auto">
+          <RouterProvider router={router}></RouterProvider>
+        </div>
       </AuthProvider>
     </QueryClientProvider>
   </StrictMode>

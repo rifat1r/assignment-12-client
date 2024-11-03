@@ -6,6 +6,7 @@ import { IconButton } from "@mui/material";
 import Swal from "sweetalert2";
 import UpdateClass from "./UpdateClass";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const MyClass = () => {
   const [id, setId] = useState(null);
@@ -49,7 +50,7 @@ const MyClass = () => {
   return (
     <div>
       <h2>My Class : {myClass.length}</h2>
-      <div className="grid grid-cols-1  lg:grid-cols-3">
+      <div className="grid grid-cols-1  lg:grid-cols-2 gap-5">
         {myClass.map((aClass) => (
           <div
             key={aClass._id}
@@ -102,13 +103,14 @@ const MyClass = () => {
                     <FaTrash className="text-orange-500"></FaTrash>
                   </IconButton>
                 </div>
-
-                <button
-                  disabled={aClass.status !== "approved"}
-                  className="btn btn-outline btn-sm rounded-md border-blue-500 text-blue-500"
-                >
-                  See Details
-                </button>
+                <Link to={`/dashboard/myClass/${aClass._id}`}>
+                  <button
+                    disabled={aClass.status !== "approved"}
+                    className="btn btn-outline btn-sm rounded-md border-blue-500 text-blue-500"
+                  >
+                    See Details
+                  </button>
+                </Link>
               </div>
             </div>
 
