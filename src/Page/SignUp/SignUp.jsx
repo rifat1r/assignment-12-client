@@ -5,6 +5,7 @@ import usePostUser from "../../hooks/usePostUser";
 import SocialLogin from "../../Components/SocialLogin";
 import { updateProfile } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
+import useUploadImage from "../../hooks/useUploadImage";
 
 const SignUp = () => {
   const { createUser } = useAuth();
@@ -15,24 +16,38 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { uploadImage } = useUploadImage();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    const imageFile = data.image?.[0];
+    let imageURL = "";
+
+    if (imageFile) {
+      imageURL = await uploadImage(imageFile);
+    }
+
     console.log(data);
+
     createUser(data.email, data.password)
       .then(async (result) => {
-        updateProfile(auth.currentUser, {
+        await updateProfile(auth.currentUser, {
           displayName: data.name,
-          photoURL: data.image,
-        }).then(async () => {
-          reset();
-          const userInfo = {
-            name: data.name,
-            email: data.email,
-          };
-          // Post the user info
-          await postUserInfo(userInfo);
+          photoURL: imageURL || null,
         });
+
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+        };
+
+        if (imageURL) {
+          userInfo.image = imageURL;
+        }
+
+        await postUserInfo(userInfo);
+
         console.log(result.user);
+        reset();
       })
       .catch((error) => {
         console.log(error.message);
@@ -67,18 +82,7 @@ const SignUp = () => {
                 <p className="text-red-500 text-xl">Name is required</p>
               )}
             </div>
-            <div className="form-control">
-              <TextField
-                {...register("image", {
-                  required: true,
-                })}
-                label="Image"
-                variant="outlined"
-              />
-              {errors.image && (
-                <p className="text-red-500 text-xl">image is required</p>
-              )}
-            </div>
+
             <div className="form-control">
               <TextField
                 {...register("email", {
@@ -123,7 +127,17 @@ const SignUp = () => {
                 </p>
               )}
             </div>
-
+            {/* <input type="file" className="btn" /> */}
+            <label className="form-control w-full max-w-xs">
+              <div className="">
+                <span className="text-md ml-1 ">Choose a photo</span>
+                <input
+                  {...register("image")}
+                  type="file"
+                  className="file-input  file-input-bordered w-full max-w-xs"
+                />
+              </div>
+            </label>
             <div className="form-control mt-6">
               <button className="btn btn-secondary rounded-md h-14">
                 Sign Up

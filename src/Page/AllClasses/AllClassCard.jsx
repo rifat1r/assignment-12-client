@@ -1,10 +1,21 @@
 import { Button } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllClassCard = ({ aClass }) => {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [short, setShort] = useState(true);
-
+  const { data: enrollments = [] } = useQuery({
+    queryKey: ["checkEnrollment", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/checkEnrollment/${user?.email}`);
+      return res.data;
+    },
+  });
   return (
     <div className=" w-96 mx-auto">
       <figure className="">
@@ -45,12 +56,31 @@ const AllClassCard = ({ aClass }) => {
         )}
         <div className="flex justify-between items-center">
           <h4 className="text-xl font-semibold">${aClass.price}</h4>
-          <Link to={`/allClass/${aClass._id}`}>
-            {" "}
-            <Button variant="outlined" size="small">
-              Enroll
-            </Button>
-          </Link>
+          {enrollments?.some(
+            (enrollment) => enrollment.classId === aClass._id
+          ) ? (
+            <Link
+              state={{ title: aClass.title }}
+              to={`/dashboard/myEnrollClassDetails/${aClass._id}`}
+            >
+              <Button
+                variant="outlined"
+                size="small"
+                sx={{
+                  color: "green",
+                }}
+              >
+                Continue
+              </Button>
+            </Link>
+          ) : (
+            <Link to={`/allClass/${aClass._id}`}>
+              {" "}
+              <Button variant="outlined" size="small">
+                Enroll
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

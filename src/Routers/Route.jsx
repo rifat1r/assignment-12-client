@@ -16,6 +16,7 @@ import Payment from "../Page/Dashboard/Payments/Payment";
 import MyEnrollClass from "../Page/Dashboard/MyEnrollClass";
 import MyEnrollClassDetails from "../Page/Dashboard/MyEnrollClassDetails";
 import MyClassDetails from "../Page/Dashboard/MyClass/MyClassDetails";
+import SeeProgress from "../Page/Dashboard/SeeProgress";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "allClass",
         element: <AllClass></AllClass>,
+      },
+      {
+        path: "progress",
+        element: <SeeProgress></SeeProgress>,
       },
 
       // teachers routes

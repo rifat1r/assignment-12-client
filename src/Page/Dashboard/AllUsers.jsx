@@ -71,6 +71,7 @@ const AllUsers = () => {
         <thead>
           <tr className="bg-base-200">
             <th>#</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
@@ -81,6 +82,19 @@ const AllUsers = () => {
           {users.map((user, idx) => (
             <tr key={user._id}>
               <td>{idx + 1}</td>
+              <td>
+                <div className="avatar">
+                  <div className="mask mask-squircle h-12 w-12">
+                    <img
+                      src={
+                        user?.image
+                          ? user.image
+                          : "https://i.ibb.co.com/VWLjs5S/453178253-471506465671661-2781666950760530985-n.png"
+                      }
+                    />
+                  </div>
+                </div>
+              </td>
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td className="">

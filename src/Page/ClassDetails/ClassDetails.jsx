@@ -23,10 +23,13 @@ const ClassDetails = () => {
   return (
     <div className=" max-w-7xl mx-auto">
       <div className="flex gap-5">
-        <div className="w-1/3">
-          <img className="w-full h-72 object-cover" src={aClass.image} />
+        <div className="w-2/5">
+          <img
+            className="w-full h-72 object-cover object-center"
+            src={aClass.image}
+          />
         </div>
-        <div className="w-2/3  space-y-2">
+        <div className="w-3/5  space-y-2">
           <h2 className="text-3xl">{aClass.title}</h2>
           <p>{aClass.description}</p>
           <div>

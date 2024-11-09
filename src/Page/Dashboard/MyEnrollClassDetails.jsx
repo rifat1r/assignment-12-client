@@ -1,13 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Button } from "@mui/material";
 import useAuth from "./../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import DescriptionModal from "../../Components/DescriptionModal";
+import { FaPlus } from "react-icons/fa";
+import TERModal from "../../Components/TERModal";
 
 const MyEnrollClassDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
+  const { state } = useLocation();
+  const classTitle = state?.title;
+
   const axiosSecure = useAxiosSecure();
   const { data: assignments = [] } = useQuery({
     queryKey: ["assignment", id],
@@ -16,6 +23,7 @@ const MyEnrollClassDetails = () => {
       return res.data;
     },
   });
+  const [description, SetDescription] = useState(null);
   const {
     data: submissions = [],
     refetch,
@@ -28,10 +36,11 @@ const MyEnrollClassDetails = () => {
     },
   });
 
-  const handleSubmit = async (id) => {
+  const handleSubmit = async (assignmentId) => {
     const res = await axiosSecure.post("/submission", {
-      assignmentId: id,
+      assignmentId: assignmentId,
       email: user?.email,
+      classId: id,
       status: "submitted",
     });
     if (res.data.insertedId) {
@@ -47,6 +56,19 @@ const MyEnrollClassDetails = () => {
   };
   return (
     <div>
+      <div className="mb-3">
+        <Button variant="contained">
+          <label className="flex items-center gap-1" htmlFor={`modal_${id}`}>
+            <FaPlus className="mr-2"></FaPlus>
+            Feedback
+          </label>
+        </Button>
+
+        <TERModal classTitle={classTitle} id={id}></TERModal>
+      </div>
+      <div>
+        <h2 className="text-3xl my-3 ">{classTitle}</h2>
+      </div>
       <p>Assignments : {assignments.length}</p>
 
       <div className="overflow-x-auto">
@@ -67,15 +89,24 @@ const MyEnrollClassDetails = () => {
                 <th>{idx + 1}</th>
                 <td>{assignment.title}</td>
                 <td>
-                  <button className="btn btn-xs btn-outline rounded-sm">
+                  <button
+                    onClick={() => {
+                      document.getElementById("my_modal_1").showModal();
+                      SetDescription(assignment.description);
+                    }}
+                    className="btn btn-xs btn-outline rounded-sm"
+                  >
                     Description
                   </button>
+                  <DescriptionModal
+                    description={description}
+                  ></DescriptionModal>
                 </td>
                 <td>{assignment.deadline}</td>
 
                 <td>
                   <Button
-                    disabled={submissions.find(
+                    disabled={submissions.some(
                       (item) => item.assignmentId === assignment._id
                     )}
                     onClick={() => handleSubmit(assignment._id)}

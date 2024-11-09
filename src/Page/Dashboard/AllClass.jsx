@@ -4,16 +4,19 @@ import { Button } from "@mui/material";
 import DescriptionModal from "../../Components/DescriptionModal";
 import Swal from "sweetalert2";
 import Status from "../../Components/Status";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const AllClass = () => {
   const axiosSecure = useAxiosSecure();
   const { data: allClass = [], refetch } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/class");
+      const res = await axiosSecure.get("/allClass");
       return res.data;
     },
   });
+  const [selectedClass, setSelectedClass] = useState(null);
 
   const handleApprove = async (aClass) => {
     Swal.fire({
@@ -96,15 +99,16 @@ const AllClass = () => {
               <td>{aClass.email}</td>
               <td>
                 <Button
-                  onClick={() =>
-                    document.getElementById("my_modal_1").showModal()
-                  }
+                  onClick={() => {
+                    document.getElementById("my_modal_1").showModal();
+                    setSelectedClass(aClass.description);
+                  }}
                   size="small"
                 >
                   Description
                 </Button>
                 <DescriptionModal
-                  description={aClass.description}
+                  description={selectedClass}
                 ></DescriptionModal>
               </td>
               <td>
@@ -136,13 +140,15 @@ const AllClass = () => {
                 </Button>
               </td>
               <th>
-                <Button
-                  disabled={aClass.status !== "approved"}
-                  variant="contained"
-                  size="small"
-                >
-                  See Progress
-                </Button>
+                <Link state={{ classId: aClass._id }} to="/dashboard/progress">
+                  <Button
+                    disabled={aClass.status !== "approved"}
+                    variant="contained"
+                    size="small"
+                  >
+                    Progress
+                  </Button>
+                </Link>
               </th>
             </tr>
           ))}

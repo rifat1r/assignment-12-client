@@ -31,7 +31,10 @@ const MyEnrollClass = () => {
                 <p className="text-blue-500">{aClass.name}</p>
               </div>
               <div className="card-actions justify-end">
-                <Link to={`/dashboard/myEnrollClassDetails/${aClass._id}`}>
+                <Link
+                  state={{ title: aClass.title }}
+                  to={`/dashboard/myEnrollClassDetails/${aClass._id}`}
+                >
                   {" "}
                   <button className="btn btn-primary ">Continue</button>
                 </Link>

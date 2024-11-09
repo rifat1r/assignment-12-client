@@ -3,7 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useRef } from "react";
 
-const AddAssignment = ({ classId }) => {
+const AddAssignment = ({ classId, refetch }) => {
   const modalRef = useRef(null);
   const axiosSecure = useAxiosSecure();
   const {
@@ -27,6 +27,7 @@ const AddAssignment = ({ classId }) => {
         showConfirmButton: false,
         timer: 1500,
       });
+      refetch();
       modalRef.current.close();
     }
     reset();
