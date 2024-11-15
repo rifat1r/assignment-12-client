@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import SignUp from "../Page/SignUp/SignUp";
 import SignIn from "../Page/SignIn/SignIn";
-import Home from "../Page/Home/Home";
 import AllClasses from "../Page/AllClasses/AllClasses";
 import Dashboard from "../Layout/Dashboard";
 import AllUsers from "../Page/Dashboard/AllUsers";
@@ -17,6 +16,9 @@ import MyEnrollClass from "../Page/Dashboard/MyEnrollClass";
 import MyEnrollClassDetails from "../Page/Dashboard/MyEnrollClassDetails";
 import MyClassDetails from "../Page/Dashboard/MyClass/MyClassDetails";
 import SeeProgress from "../Page/Dashboard/SeeProgress";
+import Home from "../Page/Home/Home/Home";
+import PrivateRoute from "./PrivateRoute";
+import Profile from "../Components/Profile";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/teach",
-        element: <TeachFrom></TeachFrom>,
+        element: (
+          <PrivateRoute>
+            <TeachFrom></TeachFrom>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/allClasses",
@@ -37,11 +43,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/allClass/:id",
-        element: <ClassDetails></ClassDetails>,
+        element: (
+          <PrivateRoute>
+            <ClassDetails></ClassDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/payment",
-        element: <Payment></Payment>,
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/signUp",
@@ -73,6 +87,10 @@ const router = createBrowserRouter([
       {
         path: "progress",
         element: <SeeProgress></SeeProgress>,
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>,
       },
 
       // teachers routes

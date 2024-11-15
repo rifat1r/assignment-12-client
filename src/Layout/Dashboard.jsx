@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const { user } = useAuth();
   return (
-    <div>
+    <div className="">
       <div className="drawer md:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
@@ -88,7 +88,7 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/profile">Profile</NavLink>
+                  <NavLink to="/dashboard/profile">Profile</NavLink>
                 </li>
               </>
             )}

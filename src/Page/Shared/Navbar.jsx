@@ -1,7 +1,9 @@
-import { AiOutlineShoppingCart } from "react-icons/ai";
+// import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgMenuLeft } from "react-icons/cg";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import "./NavStyle.css";
+import { IoSearch } from "react-icons/io5";
 
 const Navbar = () => {
   const { logout, user } = useAuth();
@@ -14,65 +16,36 @@ const Navbar = () => {
         <NavLink to="/teach">Teach on eduManage</NavLink>
       </li>
       <li>
+        <NavLink to="/dashboard">Dashboard</NavLink>
+      </li>
+      <li>
         <NavLink to="/allClasses">All Classes</NavLink>
       </li>
       <li>
-        <NavLink to="/myClasses">My Classes</NavLink>
+        <NavLink>More</NavLink>
       </li>
     </>
   );
   return (
-    <div className="navbar bg-base-100 max-w-7xl mx-auto">
-      <div className="navbar-start">
+    <div className="navbar justify-between w-full lg:max-w-7xl mx-auto border bg-slate-700">
+      <div className=" w-1/4  text-white">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             {/* icon */}
             <CgMenuLeft className="text-2xl " />
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-lg dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 shadow text-white bg-slate-700"
           >
             {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
-      </div>
-      <div className="navbar-center hidden md:flex">
-        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
-      </div>
-      <div className="navbar-end">
-        <div className="flex items-center">
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle"
-            >
-              <div className="indicator">
-                {/* icon */}
-                <AiOutlineShoppingCart className="text-2xl" />
-                <span className="badge badge-sm badge-accent indicator-item">
-                  8
-                </span>
-              </div>
-            </div>
-            <div
-              tabIndex={0}
-              className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow"
-            >
-              <div className="card-body">
-                <span className="text-lg font-bold">8 Items</span>
-                <span className="text-info">Subtotal: $999</span>
-                <div className="card-actions">
-                  <button className="btn btn-primary btn-block">
-                    View cart
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="dropdown dropdown-end">
+        <a className=" text-3xl font-bold rounded-sm text-white px-2 py-1 ">
+          eduManage
+        </a>
+        <div className="flex items-center  gap-3  ">
+          <div className="dropdown dropdown-end ml-5">
             <div
               tabIndex={0}
               role="button"
@@ -80,7 +53,6 @@ const Navbar = () => {
             >
               <div className="w-10 rounded-full">
                 <img
-                  alt="Tailwind CSS Navbar component"
                   src={user?.photoURL}
                   onError={(e) => {
                     e.target.src =
@@ -91,13 +63,10 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-36 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-slate-700 rounded-box z-[1] mt-3 w-36 p-2 shadow"
             >
               <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
+                <NavLink to="/dashboard/profile">Prifile</NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard">Dashboard</NavLink>
@@ -105,24 +74,38 @@ const Navbar = () => {
               <li>
                 <NavLink to="/signup">Sign Up</NavLink>
               </li>
-              {user ? (
-                <li>
-                  <a
-                    onClick={() => {
-                      logout().then();
-                    }}
-                  >
-                    Logout
-                  </a>
-                </li>
-              ) : (
-                <li>
-                  <NavLink to="/signin">Login</NavLink>
-                </li>
-              )}
             </ul>
           </div>
+          <div className=" w-16 text-center  text-white text-base  font-medium">
+            {user ? (
+              <span className="flex items-center cursor-pointer">
+                <a
+                  onClick={() => {
+                    logout().then();
+                  }}
+                >
+                  Sign out
+                </a>
+              </span>
+            ) : (
+              <span className="">
+                <NavLink to="/signin">Sign in</NavLink>
+              </span>
+            )}
+          </div>
         </div>
+      </div>
+      <div className="w-1/2 mx-auto hidden lg:flex justify-center  ml-10 text-white">
+        <ul className="flex justify-center gap-4 px-1 text-base  font-medium">
+          {navLinks}
+        </ul>
+      </div>
+      {/* search bar */}
+      <div className="w-1/4 ml-6 justify-end hidden lg:flex ">
+        <label className="input input-bordered h-9 rounded-none flex items-center gap-2">
+          <input type="text" className="grow" placeholder="Search" />
+          <IoSearch className="text-2xl " />
+        </label>
       </div>
     </div>
   );

@@ -6,9 +6,13 @@ import SocialLogin from "../../Components/SocialLogin";
 import { updateProfile } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
 import useUploadImage from "../../hooks/useUploadImage";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { createUser } = useAuth();
+  const navigate = useNavigate();
+
   const { postUserInfo } = usePostUser();
   const {
     register,
@@ -48,6 +52,14 @@ const SignUp = () => {
 
         console.log(result.user);
         reset();
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Sign up successfull",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
       })
       .catch((error) => {
         console.log(error.message);

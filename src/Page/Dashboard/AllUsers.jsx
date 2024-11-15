@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaTrash, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { IconButton } from "@mui/material";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -12,6 +13,14 @@ const AllUsers = () => {
       return res.data;
     },
   });
+  const { data: teacherStatus = [] } = useQuery({
+    queryKey: ["teachersStatus"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/teachersStatus");
+      return res.data;
+    },
+  });
+  console.log("teachers", teacherStatus);
   const handleDelete = (user) => {
     Swal.fire({
       title: `Are you sure you want to delete ${user.name}?`,
@@ -75,6 +84,7 @@ const AllUsers = () => {
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Make Admin</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -100,20 +110,29 @@ const AllUsers = () => {
               <td className="">
                 {user.role === "admin" ? (
                   <span>Admin</span>
+                ) : teacherStatus?.some(
+                    (teacher) => teacher.email === user?.email
+                  ) ? (
+                  <span>Teacher</span>
                 ) : (
-                  <button className="btn btn-sm pt-1 mt-1">
-                    <FaUsers
-                      onClick={() => handleMakeAdmin(user)}
-                      className="text-xl"
-                    ></FaUsers>
-                  </button>
+                  <span>User</span>
                 )}
               </td>
               <td>
-                <FaTrash
-                  onClick={() => handleDelete(user)}
-                  className="text-red-400 text-lg"
-                ></FaTrash>
+                <IconButton>
+                  <FaUsers
+                    onClick={() => handleMakeAdmin(user)}
+                    className="text-xl"
+                  ></FaUsers>
+                </IconButton>
+              </td>
+              <td>
+                <IconButton>
+                  <FaTrash
+                    onClick={() => handleDelete(user)}
+                    className="text-red-400 text-lg"
+                  ></FaTrash>
+                </IconButton>
               </td>
             </tr>
           ))}

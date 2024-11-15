@@ -7,7 +7,7 @@ const SeeProgress = () => {
   const { state } = useLocation();
   const axiosSecure = useAxiosSecure();
   const classId = state.classId;
-  const { data: reviews = [] } = useQuery({
+  const { data: feedbacks = [] } = useQuery({
     queryKey: [classId, "feedback"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/reviews/${classId}`);
@@ -16,10 +16,10 @@ const SeeProgress = () => {
   });
   return (
     <div>
-      <p>Feedback : {reviews.length}</p>
-      <div>
-        {reviews.map((review) => (
-          <ReviewCard key={review._id} review={review}></ReviewCard>
+      <p>Feedback : {feedbacks.length}</p>
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        {feedbacks.map((feedback) => (
+          <ReviewCard key={feedback._id} feedback={feedback}></ReviewCard>
         ))}
       </div>
     </div>

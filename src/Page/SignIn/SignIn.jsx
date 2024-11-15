@@ -2,9 +2,15 @@ import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../Components/SocialLogin";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
   const { login } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from.pathname || "/";
+
   const {
     register,
     reset,
@@ -18,6 +24,14 @@ const SignIn = () => {
       .then((result) => {
         reset();
         console.log(result.user);
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "User logged in successfull",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
