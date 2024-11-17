@@ -20,7 +20,7 @@ const AllUsers = () => {
       return res.data;
     },
   });
-  console.log("teachers", teacherStatus);
+  // console.log("teachers", teacherStatus);
   const handleDelete = (user) => {
     Swal.fire({
       title: `Are you sure you want to delete ${user.name}?`,

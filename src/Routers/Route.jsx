@@ -19,6 +19,8 @@ import SeeProgress from "../Page/Dashboard/SeeProgress";
 import Home from "../Page/Home/Home/Home";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "../Components/Profile";
+import AdminRoute from "./AdminRoute";
+import TeacherRoute from "./TeacherRoute";
 
 const router = createBrowserRouter([
   {
@@ -69,24 +71,44 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       //admin routes
       {
         path: "allUsers",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "teacherRequest",
-        element: <TeacherRequest></TeacherRequest>,
+        element: (
+          <AdminRoute>
+            <TeacherRequest></TeacherRequest>
+          </AdminRoute>
+        ),
       },
       {
         path: "allClass",
-        element: <AllClass></AllClass>,
+        element: (
+          <AdminRoute>
+            <AllClass></AllClass>
+          </AdminRoute>
+        ),
       },
       {
         path: "progress",
-        element: <SeeProgress></SeeProgress>,
+        element: (
+          <AdminRoute>
+            <SeeProgress></SeeProgress>
+          </AdminRoute>
+        ),
       },
       {
         path: "profile",
@@ -96,16 +118,28 @@ const router = createBrowserRouter([
       // teachers routes
       {
         path: "addClass",
-        element: <AddClass></AddClass>,
+        element: (
+          <TeacherRoute>
+            <AddClass></AddClass>
+          </TeacherRoute>
+        ),
       },
 
       {
         path: "myClass",
-        element: <MyClass></MyClass>,
+        element: (
+          <TeacherRoute>
+            <MyClass></MyClass>
+          </TeacherRoute>
+        ),
       },
       {
         path: "myClass/:id",
-        element: <MyClassDetails></MyClassDetails>,
+        element: (
+          <TeacherRoute>
+            <MyClassDetails></MyClassDetails>
+          </TeacherRoute>
+        ),
       },
       // student routes
       {
@@ -118,7 +152,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {},
 ]);
 
 export default router;
