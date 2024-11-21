@@ -17,6 +17,7 @@ const ClassDetails = () => {
       return res.data;
     },
   });
+  // console.log(typeof aClass.price, "data type");
   // get the teacher info
   const { data: teacher = {} } = useQuery({
     queryKey: [aClass.email],

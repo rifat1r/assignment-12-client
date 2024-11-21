@@ -4,7 +4,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useTeacher from "../../hooks/useTeacher";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { useEffect } from "react";
 
@@ -14,8 +14,8 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const TeachFrom = () => {
   const navigate = useNavigate();
-  const [requestStatus] = useTeacher();
-  console.log("status-------", requestStatus);
+  const [isTeacher] = useTeacher();
+  console.log("status-------", isTeacher);
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const {
@@ -25,14 +25,14 @@ const TeachFrom = () => {
     formState: { errors },
   } = useForm();
   useEffect(() => {
-    if (requestStatus === "rejected") {
+    if (isTeacher === "rejected") {
       Swal.fire({
         title: "Your request have been rejected!",
         text: "You can try to another",
         icon: "info",
       });
     }
-    if (requestStatus === "pending") {
+    if (isTeacher === "pending") {
       Swal.fire({
         title: "Thanks for your submission!",
         text: "Your request being reviewed by our team",
@@ -47,7 +47,7 @@ const TeachFrom = () => {
         }
       });
     }
-  }, [requestStatus, navigate]);
+  }, [isTeacher, navigate]);
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -84,7 +84,7 @@ const TeachFrom = () => {
     }
   };
 
-  if (requestStatus === "approved") {
+  if (isTeacher === "approved") {
     return (
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col md:flex-row">
@@ -107,7 +107,9 @@ const TeachFrom = () => {
             </p>
             {/* <button className="btn btn-primary">Add Class</button> */}
             <div className="space-x-7">
-              <Button variant="contained">Add Class</Button>
+              <Link to="/dashboard/addClass">
+                <Button variant="contained">Add Class</Button>
+              </Link>
               <Button
                 onClick={() => {
                   navigate(-1);
@@ -218,12 +220,12 @@ const TeachFrom = () => {
 
         <div className="text-end">
           <button
-            disabled={requestStatus === "pending"}
+            disabled={isTeacher === "pending"}
             className="btn btn-accent my-5 text-white"
           >
             <FaUpload></FaUpload>
-            {requestStatus === "not_found" && "Submit for review"}
-            {requestStatus === "rejected" && "Request to another"}
+            {isTeacher === "not_found" && "Submit for review"}
+            {isTeacher === "rejected" && "Request to another"}
           </button>
         </div>
       </form>

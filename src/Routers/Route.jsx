@@ -21,6 +21,7 @@ import PrivateRoute from "./PrivateRoute";
 import Profile from "../Components/Profile";
 import AdminRoute from "./AdminRoute";
 import TeacherRoute from "./TeacherRoute";
+import AdminHome from "../Page/Dashboard/AdminHome/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -109,6 +110,10 @@ const router = createBrowserRouter([
             <SeeProgress></SeeProgress>
           </AdminRoute>
         ),
+      },
+      {
+        path: "adminHome",
+        element: <AdminHome></AdminHome>,
       },
       {
         path: "profile",

@@ -1,0 +1,42 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import required modules
+import { Pagination, Navigation } from "swiper/modules";
+
+const Banner = () => {
+  const axiosPublic = useAxiosPublic();
+  const { data: bannerImage = [] } = useQuery({
+    queryKey: ["bannerImage"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/bannerImage");
+      return res.data;
+    },
+  });
+  console.log("banner image", bannerImage);
+  return (
+    <div className="max-w-7xl mx-auto">
+      <Swiper
+        pagination={{
+          type: "fraction",
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+      >
+        {bannerImage.map((item) => (
+          <SwiperSlide key={item._id}>
+            <img className="w-full lg:h-[640px]  mx-auto" src={item.image} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+};
+
+export default Banner;

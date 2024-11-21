@@ -2,7 +2,7 @@ import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../Components/SocialLogin";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const SignIn = () => {
@@ -42,13 +42,15 @@ const SignIn = () => {
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Sign In</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
         </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl rounded-md">
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl rounded-md  ">
+          <div className="mx-9 mt-7 -mb-4">
+            <div className="text-center ">
+              <SocialLogin></SocialLogin>
+            </div>
+            <div className="divider">OR</div>
+          </div>
+
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="card-body space-y-5"
@@ -82,7 +84,12 @@ const SignIn = () => {
                 Sign In
               </button>
             </div>
-            <SocialLogin></SocialLogin>
+            <h2 className="text-center">
+              New to this site?{" "}
+              <Link className="text-blue-500 font-medium" to="/signup">
+                sign up
+              </Link>
+            </h2>
           </form>
         </div>
       </div>

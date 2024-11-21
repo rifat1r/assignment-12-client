@@ -32,7 +32,10 @@ const SocialLogin = () => {
   };
   return (
     <div>
-      <button onClick={handleSocialLogin} className="btn">
+      <button
+        onClick={handleSocialLogin}
+        className="btn  btn-block text-blue-400"
+      >
         <FaGoogle className="text-2xl" /> Continue with Google
       </button>
     </div>

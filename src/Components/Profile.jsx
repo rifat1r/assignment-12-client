@@ -10,7 +10,7 @@ import UpdateProfile from "./UpdateProfile";
 const Profile = () => {
   const [userId, setUserId] = useState(null);
   const { user } = useAuth();
-  const [isTeacher] = useTeacher();
+  const [isTeacher, , category] = useTeacher();
 
   const axiosSecure = useAxiosSecure();
   const { data: userInfo = {}, refetch } = useQuery({
@@ -46,7 +46,7 @@ const Profile = () => {
           {userInfo.role
             ? userInfo.role
             : isTeacher === "approved"
-            ? "Teacher"
+            ? `Teacher (${category})`
             : "User"}
         </p>
         <p>Phone number : {userInfo.number}</p>

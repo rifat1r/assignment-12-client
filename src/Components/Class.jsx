@@ -20,6 +20,7 @@ const Class = ({ getFormData, action, aClass, id }) => {
     }
   }, [aClass, setValue, id]);
   const onSubmit = async (data) => {
+    data.price = parseInt(data.price);
     getFormData(data);
     reset();
   };

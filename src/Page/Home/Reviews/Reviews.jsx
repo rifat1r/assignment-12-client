@@ -16,14 +16,29 @@ const Reviews = () => {
     },
   });
   return (
-    <div>
-      <h2>Reviews : {feedbacks.length}</h2>
+    <div className="max-w-7xl mx-auto">
       <Swiper
         slidesPerView={3}
         spaceBetween={20}
         centeredSlides={true}
         pagination={{
           clickable: true,
+        }}
+        breakpoints={{
+          // Adjust slidesPerView and space for medium screens
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
+          // Adjust for small screens
+          425: {
+            slidesPerView: 1,
+            spaceBetween: 5,
+          },
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 1,
+          },
         }}
         modules={[Pagination]}
         className="mySwiper "

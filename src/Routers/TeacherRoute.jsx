@@ -5,7 +5,8 @@ import useTeacher from "../hooks/useTeacher";
 const TeacherRoute = ({ children }) => {
   const location = useLocation();
   const { user, loading } = useAuth();
-  const [requestStatus, isTeacherLoading] = useTeacher();
+  const [isTeacher, isTeacherLoading] = useTeacher();
+  console.log("teacher route", isTeacher);
   if (loading || isTeacherLoading) {
     return (
       <div className="flex justify-center mt-36">
@@ -13,7 +14,7 @@ const TeacherRoute = ({ children }) => {
       </div>
     );
   }
-  if (user && requestStatus) {
+  if (user && isTeacher) {
     return children;
   }
   return <Navigate to="/signin" state={{ from: location }}></Navigate>;

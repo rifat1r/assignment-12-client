@@ -2,9 +2,9 @@ import { FaBook, FaHome, FaListAlt, FaUserPlus, FaUsers } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { NavLink, Outlet } from "react-router-dom";
-import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
 import useTeacher from "../hooks/useTeacher";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [isTeacher] = useTeacher();
@@ -101,7 +101,7 @@ const Dashboard = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/home">
+              <NavLink to="/allClasses">
                 <FaBook></FaBook>
                 All Classes
               </NavLink>

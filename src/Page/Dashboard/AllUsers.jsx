@@ -3,13 +3,21 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaTrash, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { IconButton } from "@mui/material";
+import { IoSearch } from "react-icons/io5";
+import { useState } from "react";
 
 const AllUsers = () => {
+  const [search, setSearch] = useState("");
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(e.target.search.value);
+    console.log("search", search);
+  };
   const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
-    queryKey: ["allUsers"],
+    queryKey: ["allUsers", search],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
+      const res = await axiosSecure.get(`/users?search=${search}`);
       return res.data;
     },
   });
@@ -20,7 +28,13 @@ const AllUsers = () => {
       return res.data;
     },
   });
-  // console.log("teachers", teacherStatus);
+  const { data: adminStatus = [] } = useQuery({
+    queryKey: ["adminStatus"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/adminStatus");
+      return res.data;
+    },
+  });
   const handleDelete = (user) => {
     Swal.fire({
       title: `Are you sure you want to delete ${user.name}?`,
@@ -75,6 +89,19 @@ const AllUsers = () => {
   };
   return (
     <div className="overflow-x-auto">
+      <div className="flex justify-start mb-6">
+        <form onSubmit={handleSearch}>
+          <label className="input input-bordered  rounded-none flex items-center gap-2 max-w-lg">
+            <input
+              type="text"
+              name="search"
+              className="grown "
+              placeholder="Search for user"
+            />
+            <IoSearch className="text-2xl " />
+          </label>
+        </form>
+      </div>
       <table className="table table-zebra">
         {/* head */}
         <thead>
@@ -113,13 +140,17 @@ const AllUsers = () => {
                 ) : teacherStatus?.some(
                     (teacher) => teacher.email === user?.email
                   ) ? (
-                  <span>Teacher</span>
+                  <span>Teacher </span>
                 ) : (
                   <span>User</span>
                 )}
               </td>
               <td>
-                <IconButton>
+                <IconButton
+                  disabled={adminStatus?.some(
+                    (admin) => admin.email === user.email
+                  )}
+                >
                   <FaUsers
                     onClick={() => handleMakeAdmin(user)}
                     className="text-xl"
@@ -131,7 +162,7 @@ const AllUsers = () => {
                   <FaTrash
                     onClick={() => handleDelete(user)}
                     className="text-red-400 text-lg"
-                  ></FaTrash>
+                  />
                 </IconButton>
               </td>
             </tr>

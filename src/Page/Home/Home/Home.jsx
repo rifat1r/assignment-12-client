@@ -1,9 +1,10 @@
+import Banner from "../Banner/Banner";
 import Reviews from "../Reviews/Reviews";
 
 const Home = () => {
   return (
     <div className="border">
-      <h2>This is home</h2>
+      <Banner></Banner>
       <Reviews></Reviews>
     </div>
   );

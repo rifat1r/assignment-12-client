@@ -1,11 +1,12 @@
 // import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgMenuLeft } from "react-icons/cg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "./NavStyle.css";
 import { IoSearch } from "react-icons/io5";
 
-const Navbar = () => {
+const Navbar = ({ setSearch }) => {
+  const navigate = useNavigate();
   const { logout, user } = useAuth();
   const navLinks = (
     <>
@@ -26,6 +27,11 @@ const Navbar = () => {
       </li>
     </>
   );
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(e.target.search.value);
+    navigate("/allClasses");
+  };
   return (
     <div className="navbar justify-between w-full lg:max-w-7xl mx-auto border bg-slate-700">
       <div className=" w-1/4  text-white">
@@ -102,10 +108,17 @@ const Navbar = () => {
       </div>
       {/* search bar */}
       <div className="w-1/4 ml-6 justify-end hidden lg:flex ">
-        <label className="input input-bordered h-9 rounded-none flex items-center gap-2">
-          <input type="text" className="grow" placeholder="Search" />
-          <IoSearch className="text-2xl " />
-        </label>
+        <form onSubmit={handleSearch}>
+          <label className="input input-bordered h-9 rounded-none flex items-center gap-2">
+            <input
+              type="text"
+              name="search"
+              className="grow"
+              placeholder="Search"
+            />
+            <IoSearch className="text-2xl " />
+          </label>
+        </form>
       </div>
     </div>
   );
