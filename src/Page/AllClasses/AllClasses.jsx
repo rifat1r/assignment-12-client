@@ -1,11 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import AllClassCard from "./AllClassCard";
-import { Box, Slider, Tab, Tabs } from "@mui/material";
+import { Box, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 const AllClasses = () => {
+  const [countClass, setCountClass] = useState(null);
+  const [size, setSize] = useState(6);
+  const [currentPage, setCurrentPage] = useState(0);
+  console.log("counClass", countClass);
   const min = 0;
   const max = 1000;
   const { search } = useOutletContext();
@@ -14,13 +18,15 @@ const AllClasses = () => {
   const [value, setValue] = useState(0);
   const axiosPublic = useAxiosPublic();
   const { data: allClass = [], isPending } = useQuery({
-    queryKey: ["class", category, search],
+    queryKey: ["class", category, search, size, currentPage],
     queryFn: async () => {
       const res = await axiosPublic.get(
-        `/class?category=${category}&search=${search}&min=${min}&max=${max}`
+        `/class?category=${category}&search=${search}&min=${min}&max=${max}&page=${currentPage}&size=${size}`
       );
+      setCountClass(res.data);
       console.log("response", res.data);
-      return res.data;
+      setCountClass(res.data.classCount);
+      return res.data.result;
     },
   });
   console.log("tab", category);
@@ -28,7 +34,14 @@ const AllClasses = () => {
     setValue(newValue);
     setCategory(event.target.textContent);
   };
-
+  // pagination
+  const numberOfPages = countClass ? Math.ceil(countClass / size) : 0;
+  const pages = [...Array(numberOfPages).keys()];
+  const handleClassPerPage = (e) => {
+    const val = e.target.value;
+    setSize(val);
+    setCurrentPage(0);
+  };
   if (isPending) {
     return (
       <div className="flex justify-center mt-36">
@@ -70,6 +83,33 @@ const AllClasses = () => {
           <AllClassCard key={aClass._id} aClass={aClass}></AllClassCard>
         ))}
       </div>
+      {numberOfPages > 0 && (
+        <div className="flex justify-center items-center my-5">
+          {pages.map((page) => (
+            <button
+              onClick={() => setCurrentPage(page)}
+              className={
+                page === currentPage
+                  ? "btn btn-primary btn-circle btn-sm btn-info mx-2"
+                  : "btn btn-circle btn-sm  mx-2 "
+              }
+              key={page}
+            >
+              {page + 1}
+            </button>
+          ))}
+          <select
+            className="ml-3 select select-bordered select-sm"
+            value={size}
+            onChange={handleClassPerPage}
+          >
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="9">9</option>
+            <option value="12">12</option>
+          </select>
+        </div>
+      )}
     </div>
   );
 };

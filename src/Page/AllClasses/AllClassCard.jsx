@@ -32,7 +32,7 @@ const AllClassCard = ({ aClass }) => {
                 onClick={() => {
                   setShort(!short);
                 }}
-                className="text-lg text-blue-500"
+                className="text-lg text-blue-500 cursor-pointer"
               >
                 {" "}
                 ...Show More
@@ -47,7 +47,7 @@ const AllClassCard = ({ aClass }) => {
                 onClick={() => {
                   setShort(!short);
                 }}
-                className="text-lg text-blue-500"
+                className="text-lg text-blue-500 cursor-pointer"
               >
                 Show Less
               </span>

@@ -22,9 +22,9 @@ const Navbar = ({ setSearch }) => {
       <li>
         <NavLink to="/allClasses">All Classes</NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink>More</NavLink>
-      </li>
+      </li> */}
     </>
   );
   const handleSearch = (e) => {
@@ -42,12 +42,15 @@ const Navbar = ({ setSearch }) => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-lg dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 shadow text-white bg-slate-700"
+            className="menu menu-lg dropdown-content  rounded-box z-50 mt-3 w-52 p-2 shadow text-white bg-slate-700"
           >
             {navLinks}
           </ul>
         </div>
-        <a className=" text-3xl font-bold rounded-sm text-white px-2 py-1 ">
+        <a
+          href="/"
+          className=" text-3xl font-bold rounded-sm text-white px-2 py-1 cursor-pointer"
+        >
           eduManage
         </a>
         <div className="flex items-center  gap-3  ">
@@ -69,7 +72,7 @@ const Navbar = ({ setSearch }) => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-slate-700 rounded-box z-[1] mt-3 w-36 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-slate-700 rounded-box z-50 mt-3 w-36 p-2 shadow"
             >
               <li>
                 <NavLink to="/dashboard/profile">Prifile</NavLink>
@@ -107,16 +110,18 @@ const Navbar = ({ setSearch }) => {
         </ul>
       </div>
       {/* search bar */}
-      <div className="w-1/4 ml-6 justify-end hidden lg:flex ">
+      <div className="w-1/4 ml-6 justify-end  ">
         <form onSubmit={handleSearch}>
           <label className="input input-bordered h-9 rounded-none flex items-center gap-2">
             <input
               type="text"
               name="search"
               className="grow"
-              placeholder="Search"
+              placeholder="Search  for class"
             />
-            <IoSearch className="text-2xl " />
+            <button type="submit">
+              <IoSearch type="submit" className="text-2xl " />
+            </button>
           </label>
         </form>
       </div>

@@ -5,6 +5,9 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useTeacher from "../hooks/useTeacher";
 import useAdmin from "../hooks/useAdmin";
+import { MdAddToPhotos } from "react-icons/md";
+import { BiBook } from "react-icons/bi";
+import { AiOutlineUser } from "react-icons/ai";
 
 const Dashboard = () => {
   const [isTeacher] = useTeacher();
@@ -64,18 +67,33 @@ const Dashboard = () => {
                     All Classes
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink to="/dashboard/profile">
+                    <AiOutlineUser className="text-xl"></AiOutlineUser>
+                    Profile
+                  </NavLink>
+                </li>
               </>
             )}
             {user && isTeacher === "approved" && (
               <>
                 <li>
-                  <NavLink to="/dashboard/addClass">Add Class</NavLink>
+                  <NavLink to="/dashboard/addClass">
+                    <MdAddToPhotos className="text-xl" />
+                    Add Class
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/myClass">My Class</NavLink>
+                  <NavLink to="/dashboard/myClass">
+                    <BiBook className="text-xl" />
+                    My Class
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/profile">Profile</NavLink>
+                  <NavLink to="/dashboard/profile">
+                    <AiOutlineUser className="text-xl" />
+                    Profile
+                  </NavLink>
                 </li>
               </>
             )}
@@ -83,12 +101,15 @@ const Dashboard = () => {
               <>
                 <li>
                   <NavLink to="/dashboard/myEnrollClass">
-                    <FaUserPlus></FaUserPlus>
+                    <FaUserPlus className="text-xl"></FaUserPlus>
                     My enroll class
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/profile">Profile</NavLink>
+                  <NavLink to="/dashboard/profile">
+                    <AiOutlineUser className="text-xl"></AiOutlineUser>
+                    Profile
+                  </NavLink>
                 </li>
               </>
             )}
@@ -96,19 +117,19 @@ const Dashboard = () => {
             {/* normal routes */}
             <li>
               <NavLink to="/">
-                <FaHome></FaHome>
+                <FaHome className="text-xl"></FaHome>
                 User Home
               </NavLink>
             </li>
             <li>
               <NavLink to="/allClasses">
-                <FaBook></FaBook>
+                <FaBook className="text-lg"></FaBook>
                 All Classes
               </NavLink>
             </li>
             <li>
               <NavLink to="/dashboard/home">
-                <IoIosMail className="text-lg"></IoIosMail>
+                <IoIosMail className="text-xl"></IoIosMail>
                 Contact
               </NavLink>
             </li>

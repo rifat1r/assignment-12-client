@@ -20,7 +20,7 @@ const Banner = () => {
   });
   console.log("banner image", bannerImage);
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto z-10">
       <Swiper
         pagination={{
           type: "fraction",
