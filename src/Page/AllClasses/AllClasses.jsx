@@ -1,27 +1,30 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import AllClassCard from "./AllClassCard";
-import { Box, Tab, Tabs } from "@mui/material";
+import { Box, Button, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import FilterByPrice from "../../Components/FilterByPrice";
 
 const AllClasses = () => {
   const [countClass, setCountClass] = useState(null);
   const [size, setSize] = useState(6);
   const [currentPage, setCurrentPage] = useState(0);
   console.log("counClass", countClass);
-  const min = 0;
-  const max = 1000;
+  // const min = 0;
+  // const max = 1000;
+  const [priceRange, setPriceRange] = useState({ min: 0, max: Infinity });
+
   const { search } = useOutletContext();
   console.log("search", search);
   const [category, setCategory] = useState("All");
   const [value, setValue] = useState(0);
   const axiosPublic = useAxiosPublic();
   const { data: allClass = [], isPending } = useQuery({
-    queryKey: ["class", category, search, size, currentPage],
+    queryKey: ["class", category, search, size, currentPage, priceRange],
     queryFn: async () => {
       const res = await axiosPublic.get(
-        `/class?category=${category}&search=${search}&min=${min}&max=${max}&page=${currentPage}&size=${size}`
+        `/class?category=${category}&search=${search}&min=${priceRange.min}&max=${priceRange.max}&page=${currentPage}&size=${size}`
       );
       setCountClass(res.data);
       console.log("response", res.data);
@@ -52,23 +55,28 @@ const AllClasses = () => {
 
   return (
     <div className="max-w-7xl mx-auto ">
-      <div>
+      <div className="flex justify-between items-center">
         <h2 className="text-4xl"> All classes : {allClass.length} </h2>
-        {/* <div>
-          <Box sx={{ width: 300 }}>
-            <Slider
-              getAriaLabel={() => "Temperature range"}
-              value={value}
-              onChange={handleChange2}
-              valueLabelDisplay="auto"
-              getAriaValueText={value}
-            />
-          </Box>
-        </div> */}
+        <div>
+          <Button
+            variant="outlined"
+            onClick={() => document.getElementById("my_modal_22").showModal()}
+          >
+            Filter by price
+          </Button>
+
+          <FilterByPrice setPriceRange={setPriceRange}></FilterByPrice>
+        </div>
       </div>
       <div className="mb-4">
         <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-          <Tabs value={value} onChange={handleChange} centered>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            centered
+            variant="scrollable"
+            scrollButtons="auto"
+          >
             <Tab label="All" />
             <Tab label="Web development" />
             <Tab label="DevOps" />

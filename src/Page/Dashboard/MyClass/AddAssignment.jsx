@@ -3,7 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useRef } from "react";
 
-const AddAssignment = ({ classId, refetch }) => {
+const AddAssignment = ({ classId, refetch, title }) => {
   const modalRef = useRef(null);
   const axiosSecure = useAxiosSecure();
   const {
@@ -35,7 +35,7 @@ const AddAssignment = ({ classId, refetch }) => {
   return (
     <dialog ref={modalRef} id="my_modal_2" className="modal">
       <div className="modal-box">
-        <h3 className="font-bold text-lg">Add Assignment</h3>
+        <h3 className="font-bold text-lg">Add assignment for : {title}</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control">
             <label className="label">

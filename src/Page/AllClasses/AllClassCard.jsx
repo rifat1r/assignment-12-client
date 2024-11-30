@@ -17,7 +17,7 @@ const AllClassCard = ({ aClass }) => {
     },
   });
   return (
-    <div className=" w-96 mx-auto">
+    <div className="w-96 mx-auto">
       <figure className="">
         <img className="w-full h-64 object-cover " src={aClass.image} />
       </figure>

@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { MdOutlineAddToPhotos } from "react-icons/md";
 import AddAssignment from "./AddAssignment";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
@@ -15,9 +15,12 @@ const MyClassDetails = () => {
       return res.data;
     },
   });
-  console.log(id);
+  const { state } = useLocation();
+  const title = state.title;
+  // console.log("state", state);
   return (
     <div className="">
+      <h2 className="text-3xl font-semibold mb-3">{title}</h2>
       <div className="stats shadow mb-5">
         <div className="stat place-items-center">
           <div className="stat-title">Total Enrollmemts</div>
@@ -48,7 +51,11 @@ const MyClassDetails = () => {
           Create{" "}
         </Button>
       </div>
-      <AddAssignment refetch={refetch} classId={id}></AddAssignment>
+      <AddAssignment
+        title={title}
+        refetch={refetch}
+        classId={id}
+      ></AddAssignment>
     </div>
   );
 };

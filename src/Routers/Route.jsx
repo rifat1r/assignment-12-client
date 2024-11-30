@@ -22,6 +22,7 @@ import Profile from "../Components/Profile";
 import AdminRoute from "./AdminRoute";
 import TeacherRoute from "./TeacherRoute";
 import AdminHome from "../Page/Dashboard/AdminHome/AdminHome";
+import TeacherHome from "../Page/Dashboard/TeacherHome";
 
 const router = createBrowserRouter([
   {
@@ -121,6 +122,10 @@ const router = createBrowserRouter([
       },
 
       // teachers routes
+      {
+        path: "teacherHome",
+        element: <TeacherHome></TeacherHome>,
+      },
       {
         path: "addClass",
         element: (

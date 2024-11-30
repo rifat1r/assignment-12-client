@@ -78,9 +78,9 @@ const Dashboard = () => {
             {user && isTeacher === "approved" && (
               <>
                 <li>
-                  <NavLink to="/dashboard/addClass">
-                    <MdAddToPhotos className="text-xl" />
-                    Add Class
+                  <NavLink to="/dashboard/teacherHome">
+                    <FaHome className="text-xl" />
+                    Teacher Home
                   </NavLink>
                 </li>
                 <li>
@@ -89,6 +89,13 @@ const Dashboard = () => {
                     My Class
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink to="/dashboard/addClass">
+                    <MdAddToPhotos className="text-xl" />
+                    Add Class
+                  </NavLink>
+                </li>
+
                 <li>
                   <NavLink to="/dashboard/profile">
                     <AiOutlineUser className="text-xl" />

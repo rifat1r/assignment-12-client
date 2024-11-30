@@ -12,6 +12,7 @@ import TERModal from "../../Components/TERModal";
 const MyEnrollClassDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
+  // console.log("class id", id);
   const { state } = useLocation();
   const classTitle = state?.title;
 

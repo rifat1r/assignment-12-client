@@ -67,7 +67,7 @@ const CheckoutForm = ({ price, classId }) => {
         // save payment in the database
         const payment = {
           email: user?.email,
-          price: price,
+          price: parseInt(price),
           transactionId: paymentIntent.id,
           date: new Date(),
           classId: classId,
