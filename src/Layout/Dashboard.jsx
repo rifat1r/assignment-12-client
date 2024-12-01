@@ -107,6 +107,12 @@ const Dashboard = () => {
             {user && !isAdmin && isTeacher !== "approved" && (
               <>
                 <li>
+                  <NavLink to="/dashboard/studentHome">
+                    <FaHome className="text-xl"></FaHome>
+                    Student Home
+                  </NavLink>
+                </li>
+                <li>
                   <NavLink to="/dashboard/myEnrollClass">
                     <FaUserPlus className="text-xl"></FaUserPlus>
                     My enroll class

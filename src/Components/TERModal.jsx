@@ -1,13 +1,15 @@
-import { Rating } from "@mui/material";
-import { useState } from "react";
+import { Button, Rating, Stack } from "@mui/material";
+import { useRef, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { FaCloudArrowUp } from "react-icons/fa6";
 
 const TERModal = ({ id, classTitle }) => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [value, setValue] = useState(0);
+  const modalRef = useRef(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const description = e.target.description.value;
@@ -34,29 +36,37 @@ const TERModal = ({ id, classTitle }) => {
         showConfirmButton: false,
         timer: 1500,
       });
+      modalRef.current.close();
     }
   };
   return (
-    <div className="">
-      <input type="checkbox" id={`modal_${id}`} className="modal-toggle" />
-      <div className="modal " role="dialog">
+    <dialog ref={modalRef} id="my_modal_2" className="modal">
+      <div className="modal-box ">
         <form onSubmit={handleSubmit}>
-          <div className="modal-box w-screen ">
+          <div className=" ">
             <h2 className="text-2xl text-center   text-blue-400">
-              Submit Your Feedback here
+              {classTitle}
             </h2>
             <div className="divider -mt-1 px-20"></div>
 
-            <div className="text-center font-extrabold">
-              <Rating
-                aria-required
-                name="simple-controlled"
-                size="large"
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
+            <div className="font-extrabold">
+              <Stack
+                sx={{
+                  alignItems: "center",
                 }}
-              />
+                spacing={1}
+              >
+                <Rating
+                  aria-required
+                  name="half-rating"
+                  size="large"
+                  precision={0.1}
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                />
+              </Stack>
             </div>
             <br />
 
@@ -67,17 +77,20 @@ const TERModal = ({ id, classTitle }) => {
               placeholder="Write your review here..."
             ></textarea>
             <div className="modal-action">
-              <button type="submit" className="btn btn-accent">
+              <Button variant="contained" type="submit">
+                <FaCloudArrowUp className="text-2xl mr-2"></FaCloudArrowUp>
                 Submit
-              </button>
-              <label htmlFor={`modal_${id}`} className="btn">
-                Close
-              </label>
+              </Button>
             </div>
           </div>
         </form>
       </div>
-    </div>
+      <div className="modal-action">
+        <form method="dialog">
+          <button className="btn">Close</button>
+        </form>
+      </div>
+    </dialog>
   );
 };
 

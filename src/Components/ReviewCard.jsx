@@ -1,4 +1,4 @@
-import { Rating } from "@mui/material";
+import { Rating, Stack } from "@mui/material";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 const ReviewCard = ({ feedback }) => {
@@ -11,7 +11,15 @@ const ReviewCard = ({ feedback }) => {
       <div className="">
         <h2 className="text-2xl font-medium p-5">{classTitle}</h2>
         <div className="px-5">
-          <Rating size="large" name="read-only" value={rating} readOnly />
+          <Stack spacing={1}>
+            <Rating
+              size="large"
+              name="half-rating-read"
+              precision={0.2}
+              value={rating}
+              readOnly
+            />
+          </Stack>
         </div>
         <div>
           <FaQuoteLeft className="text-blue-500 text-3xl ml-4 mt-2" />

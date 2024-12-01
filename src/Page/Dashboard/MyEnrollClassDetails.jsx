@@ -12,7 +12,7 @@ import TERModal from "../../Components/TERModal";
 const MyEnrollClassDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
-  // console.log("class id", id);
+  console.log("class id", id);
   const { state } = useLocation();
   const classTitle = state?.title;
 
@@ -56,9 +56,12 @@ const MyEnrollClassDetails = () => {
     }
   };
   return (
-    <div>
+    <div className="max-w-6xl">
       <div className="mb-3">
-        <Button variant="contained">
+        <Button
+          onClick={() => document.getElementById("my_modal_2").showModal()}
+          variant="contained"
+        >
           <label className="flex items-center gap-1" htmlFor={`modal_${id}`}>
             <FaPlus className="mr-2"></FaPlus>
             Feedback

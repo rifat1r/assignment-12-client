@@ -23,6 +23,7 @@ import AdminRoute from "./AdminRoute";
 import TeacherRoute from "./TeacherRoute";
 import AdminHome from "../Page/Dashboard/AdminHome/AdminHome";
 import TeacherHome from "../Page/Dashboard/TeacherHome";
+import StudentHome from "../Page/Dashboard/StudentHome";
 
 const router = createBrowserRouter([
   {
@@ -114,7 +115,11 @@ const router = createBrowserRouter([
       },
       {
         path: "adminHome",
-        element: <AdminHome></AdminHome>,
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>,
+          </AdminRoute>
+        ),
       },
       {
         path: "profile",
@@ -152,6 +157,10 @@ const router = createBrowserRouter([
         ),
       },
       // student routes
+      {
+        path: "studentHome",
+        element: <StudentHome></StudentHome>,
+      },
       {
         path: "myEnrollClass",
         element: <MyEnrollClass></MyEnrollClass>,
