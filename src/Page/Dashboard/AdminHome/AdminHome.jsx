@@ -4,6 +4,7 @@ import useUploadImage from "../../../hooks/useUploadImage";
 import { useQuery } from "@tanstack/react-query";
 import {
   FaClipboardList,
+  FaCloudArrowUp,
   FaDollarSign,
   FaUserGraduate,
   FaUsers,
@@ -61,7 +62,7 @@ const AdminHome = () => {
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
   return (
-    <div>
+    <div className="max-w-7xl">
       <h1 className="text-4xl font-bold">Welcome Back, {user.displayName}</h1>
       <div className="space-x-4 space-y-3">
         <div className="stats shadow bg-blue-400 bg-opacity-20">
@@ -149,10 +150,7 @@ const AdminHome = () => {
           </Bar>
         </BarChart>
       </div>
-      <form
-        onSubmit={handleUpload}
-        className="p-6 bg-white shadow-lg rounded-lg mt-8"
-      >
+      <form onSubmit={handleUpload} className="p-6 rounded-lg mt-8">
         <h2 className="text-xl font-semibold text-gray-700 mb-4">
           Upload Banner Image
         </h2>
@@ -164,6 +162,7 @@ const AdminHome = () => {
             className="file-input file-input-bordered file-input-secondary w-full max-w-xs"
           />
           <button type="submit" className="btn btn-primary">
+            <FaCloudArrowUp className="text-xl"></FaCloudArrowUp>
             Upload
           </button>
         </div>

@@ -24,7 +24,7 @@ const FeaturedClass = () => {
     },
   });
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-96">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
       {classes.map((aClass) => (
         <div key={aClass._id} className="card w-96 rounded-sm  mx-auto my-auto">
           <figure>

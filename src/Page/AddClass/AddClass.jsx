@@ -46,7 +46,7 @@ const AddClass = () => {
   };
 
   return (
-    <div className="w-full lg:w-3/4 mx-auto">
+    <div className="w-full lg:w-3/4 ">
       <Class action={"Add Class"} getFormData={handlePost}></Class>
     </div>
   );

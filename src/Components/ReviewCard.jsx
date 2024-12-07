@@ -7,7 +7,7 @@ const ReviewCard = ({ feedback }) => {
   const formattedDate = new Date(time).toLocaleDateString();
 
   return (
-    <div className="w-96 min-h-[500px] shadow-lg flex flex-col justify-between mx-auto">
+    <div className="w-96 min-h-[500px] shadow-lg flex flex-col justify-between mx-auto my-auto">
       <div className="">
         <h2 className="text-2xl font-medium p-5">{classTitle}</h2>
         <div className="px-5">

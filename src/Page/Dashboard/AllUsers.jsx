@@ -88,7 +88,7 @@ const AllUsers = () => {
     });
   };
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto max-w-7xl">
       <div className="flex justify-start mb-6">
         <form onSubmit={handleSearch}>
           <label className="input input-bordered  rounded-none flex items-center gap-2 max-w-lg">

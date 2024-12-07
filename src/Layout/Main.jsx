@@ -4,6 +4,8 @@ import { useState } from "react";
 
 const Main = () => {
   const [search, setSearch] = useState("");
+  const [classByTeacher, setClassByTeacher] = useState(null);
+  // console.log("teacher is here", classByTeacher);
   const location = useLocation();
   const noHeaderFooter =
     location.pathname.includes("/signin") ||
@@ -11,7 +13,7 @@ const Main = () => {
   return (
     <div>
       {noHeaderFooter || <Navbar setSearch={setSearch}></Navbar>}
-      <Outlet context={{ search }}></Outlet>
+      <Outlet context={{ search, classByTeacher, setClassByTeacher }}></Outlet>
     </div>
   );
 };

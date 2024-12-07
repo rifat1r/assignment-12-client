@@ -14,7 +14,7 @@ const MyEnrollClass = () => {
     },
   });
   return (
-    <div className="">
+    <div className="max-w-7xl">
       <p>My enroll class : {enrollClass.length}</p>
       <div className="grid grid-cols-1 lg:grid-cols-2  gap-5">
         {enrollClass.map((aClass) => (

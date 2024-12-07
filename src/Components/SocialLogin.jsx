@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import usePostUser from "../hooks/usePostUser";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
 
 const SocialLogin = () => {
   const { postUserInfo } = usePostUser();
@@ -34,9 +35,9 @@ const SocialLogin = () => {
     <div>
       <button
         onClick={handleSocialLogin}
-        className="btn  btn-block text-blue-400"
+        className="btn  btn-block glass text-blue-400"
       >
-        <FaGoogle className="text-2xl" /> Continue with Google
+        <FcGoogle className="text-2xl" /> Continue with Google
       </button>
     </div>
   );

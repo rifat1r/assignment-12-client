@@ -103,17 +103,23 @@ const MyClass = () => {
                     <FaTrash className="text-orange-500"></FaTrash>
                   </IconButton>
                 </div>
-                <Link
-                  state={{ title: aClass.title }}
-                  to={`/dashboard/myClass/${aClass._id}`}
-                >
+                {aClass.status === "approved" ? (
+                  <Link
+                    state={{ title: aClass.title }}
+                    to={`/dashboard/myClass/${aClass._id}`}
+                  >
+                    <button className="btn btn-outline btn-sm rounded-md border-blue-500 text-blue-500">
+                      See Details
+                    </button>
+                  </Link>
+                ) : (
                   <button
-                    disabled={aClass.status !== "approved"}
+                    disabled
                     className="btn btn-outline btn-sm rounded-md border-blue-500 text-blue-500"
                   >
                     See Details
                   </button>
-                </Link>
+                )}
               </div>
             </div>
 

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import AllClassCard from "./AllClassCard";
 import { Box, Button, Tab, Tabs } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import FilterByPrice from "../../Components/FilterByPrice";
 
@@ -10,33 +10,51 @@ const AllClasses = () => {
   const [countClass, setCountClass] = useState(null);
   const [size, setSize] = useState(6);
   const [currentPage, setCurrentPage] = useState(0);
-  console.log("counClass", countClass);
-  // const min = 0;
-  // const max = 1000;
   const [priceRange, setPriceRange] = useState({ min: 0, max: Infinity });
 
-  const { search } = useOutletContext();
-  console.log("search", search);
+  const { search, classByTeacher } = useOutletContext();
+  console.log("Teacher classes from context:", classByTeacher);
+
+  // console.log("search", search);
   const [category, setCategory] = useState("All");
   const [value, setValue] = useState(0);
   const axiosPublic = useAxiosPublic();
   const { data: allClass = [], isPending } = useQuery({
-    queryKey: ["class", category, search, size, currentPage, priceRange],
+    queryKey: [
+      "class",
+      category,
+      search,
+      size,
+      currentPage,
+      priceRange,
+      classByTeacher,
+    ],
     queryFn: async () => {
+      const teacherQuery = classByTeacher ? `&teacher=${classByTeacher} ` : "";
       const res = await axiosPublic.get(
-        `/class?category=${category}&search=${search}&min=${priceRange.min}&max=${priceRange.max}&page=${currentPage}&size=${size}`
+        `/class?category=${category}&search=${search}&min=${priceRange.min}&max=${priceRange.max}&page=${currentPage}&size=${size}${teacherQuery}`
       );
-      setCountClass(res.data);
-      console.log("response", res.data);
+      // setCountClass(res.data);
+      // console.log("response", res.data);
       setCountClass(res.data.classCount);
       return res.data.result;
     },
   });
-  console.log("tab", category);
+  // console.log("tab", category);
   const handleChange = (event, newValue) => {
     setValue(newValue);
     setCategory(event.target.textContent);
   };
+  //classByTeacher
+  // useEffect(() => {
+  //   const getTeacherCategory = async () => {
+  //     if (classByTeacher) {
+  //       const res = await axiosPublic.get(`/teacherCategory/${classByTeacher}`);
+
+  //     }
+  //   };
+  //   getTeacherCategory();
+  // }, [classByTeacher, axiosPublic]);
   // pagination
   const numberOfPages = countClass ? Math.ceil(countClass / size) : 0;
   const pages = [...Array(numberOfPages).keys()];
@@ -73,7 +91,6 @@ const AllClasses = () => {
           <Tabs
             value={value}
             onChange={handleChange}
-            centered
             variant="scrollable"
             scrollButtons="auto"
           >

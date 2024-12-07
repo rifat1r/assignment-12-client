@@ -70,7 +70,7 @@ const TeacherHome = () => {
 
       <div className="overflow-x-auto">
         <table className="table  table-pin-rows table-pin-cols table-xs">
-          <caption className="text-md font-semibold my-3">
+          <caption className="text-2xl font-semibold my-3">
             Class Performance Overview
           </caption>
           <thead className="bg-gray-200 font-bold">
@@ -79,10 +79,11 @@ const TeacherHome = () => {
               <th>Image</th>
               <th>Title</th>
               <th>Enrollments</th>
-              <th>Feedback</th>
+              <th>Feedbacks</th>
               <th>Average Rating</th>
               <th>Assignments</th>
-              <th>Assignment Submission</th>
+              <th>Expected submission</th>
+              <th>Assignment Submissions</th>
             </tr>
           </thead>
           {stats.classOverview.map((aClass, idx) => (
@@ -102,8 +103,11 @@ const TeacherHome = () => {
                 <td>{aClass.title}</td>
                 <td>{aClass.enrollmentCount}</td>
                 <td>{aClass.reviewCount}</td>
-                <td>{aClass.averageRating.toFixed(1)}</td>
+                <td>
+                  {aClass.averageRating ? aClass.averageRating.toFixed(1) : "0"}
+                </td>
                 <td>{aClass.assignmentCount}</td>
+                <td>{aClass.enrollmentCount * aClass.assignmentCount}</td>
                 <td>
                   <span>
                     {aClass.submissionCount}/

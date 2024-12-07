@@ -12,9 +12,8 @@ const Payment = () => {
   const stripePromis = loadStripe(import.meta.env.VITE_payment_gateway_PK);
   console.log("type check", typeof price);
   return (
-    <div>
-      <h2>Payment : {price}</h2>
-      <div>
+    <div className="">
+      <div className="">
         <Elements stripe={stripePromis}>
           <CheckoutForm classId={classId} price={price}></CheckoutForm>
         </Elements>

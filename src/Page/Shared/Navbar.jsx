@@ -4,10 +4,15 @@ import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "./NavStyle.css";
 import { IoSearch } from "react-icons/io5";
+import useTeacher from "../../hooks/useTeacher";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = ({ setSearch }) => {
+  const [isTeacher] = useTeacher();
+  const [isAdmin] = useAdmin();
   const navigate = useNavigate();
   const { logout, user } = useAuth();
+
   const navLinks = (
     <>
       <li>
@@ -16,15 +21,24 @@ const Navbar = ({ setSearch }) => {
       <li>
         <NavLink to="/teach">Teach on eduManage</NavLink>
       </li>
-      <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-      </li>
+      {user && isAdmin && (
+        <li>
+          <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
+        </li>
+      )}
+      {user && isTeacher === "approved" && (
+        <li>
+          <NavLink to="/dashboard/teacherHome">Dashboard</NavLink>
+        </li>
+      )}
+      {!isAdmin && isTeacher !== "approved" && (
+        <li>
+          <NavLink to="/dashboard/studentHome">Dashboard</NavLink>
+        </li>
+      )}
       <li>
         <NavLink to="/allClasses">All Classes</NavLink>
       </li>
-      {/* <li>
-        <NavLink>More</NavLink>
-      </li> */}
     </>
   );
   const handleSearch = (e) => {
@@ -33,7 +47,7 @@ const Navbar = ({ setSearch }) => {
     navigate("/allClasses");
   };
   return (
-    <div className="navbar justify-between w-full lg:max-w-7xl mx-auto border bg-slate-700">
+    <div className="navbar justify-between w-full lg:max-w-7xl mx-auto border bg-slate-700 sticky">
       <div className=" w-1/4  text-white">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -62,11 +76,11 @@ const Navbar = ({ setSearch }) => {
             >
               <div className="w-10 rounded-full">
                 <img
-                  src={user?.photoURL}
-                  onError={(e) => {
-                    e.target.src =
-                      "https://i.ibb.co.com/VWLjs5S/453178253-471506465671661-2781666950760530985-n.png";
-                  }}
+                  src={
+                    user?.photoURL
+                      ? user.photoURL
+                      : "https://i.ibb.co.com/VWLjs5S/453178253-471506465671661-2781666950760530985-n.png"
+                  }
                 />
               </div>
             </div>
@@ -77,9 +91,27 @@ const Navbar = ({ setSearch }) => {
               <li>
                 <NavLink to="/dashboard/profile">Prifile</NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard">Dashboard</NavLink>
-              </li>
+              {user && isAdmin && (
+                <li>
+                  <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
+                </li>
+              )}
+              {user && isTeacher === "approved" && (
+                <li>
+                  <NavLink to="/dashboard/teacherHome">Dashboard</NavLink>
+                </li>
+              )}
+              {user && !isAdmin && isTeacher !== "approved" && (
+                <li>
+                  <NavLink to="/dashboard/studentHome">Dashboard</NavLink>
+                </li>
+              )}
+              {!user && (
+                <li>
+                  <NavLink to="/dashboard/studentHome">Dashboard</NavLink>
+                </li>
+              )}
+
               <li>
                 <NavLink to="/signup">Sign Up</NavLink>
               </li>

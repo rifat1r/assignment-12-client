@@ -90,31 +90,35 @@ const CheckoutForm = ({ price, classId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement
-        options={{
-          style: {
-            base: {
-              fontSize: "16px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
+    <div className="max-w-sm mx-auto card shadow-xl rounded-lg mt-52 p-4 ">
+      <form onSubmit={handleSubmit}>
+        <h2 className="text-xl my-2 font-medium">Amount : {price}</h2>
+        <CardElement
+          className="bg-base-200 p-3 rounded-lg"
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#424770",
+                "::placeholder": {
+                  color: "#aab7c4",
+                },
+              },
+              invalid: {
+                color: "#9e2146",
               },
             },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      />
-      <button className="btn btn-primary btn-sm">pay</button>
-      <p>{error}</p>
-      {transactionId && (
-        <h2 className="text-center text-xl text-red-500">
-          Transaction id : {transactionId}
-        </h2>
-      )}
-    </form>
+          }}
+        />
+        <button className="btn btn-primary btn-block btn-md mt-5">Pay</button>
+        <p>{error}</p>
+        {transactionId && (
+          <h2 className="text-center text-xl text-red-500">
+            Transaction id : {transactionId}
+          </h2>
+        )}
+      </form>
+    </div>
   );
 };
 

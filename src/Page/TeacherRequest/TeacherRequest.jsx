@@ -1,9 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { FaCheck } from "react-icons/fa";
-import { ImCross } from "react-icons/im";
-import { MdOutlinePendingActions } from "react-icons/md";
 import Status from "../../Components/Status";
 
 const TeacherRequest = () => {
@@ -71,7 +68,7 @@ const TeacherRequest = () => {
     });
   };
   return (
-    <div>
+    <div className="max-w-7xl">
       <div className="overflow-x-auto">
         <table className="table table-xs table-pin-rows table-pin-cols">
           {/* head */}
