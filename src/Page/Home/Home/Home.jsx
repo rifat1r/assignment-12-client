@@ -1,5 +1,7 @@
+import SectionTitle from "../../../Components/SectionTitle";
 import Footer from "../../Shared/Footer";
 import Banner from "../Banner/Banner";
+import Categories from "../Categories/Categories";
 import FeaturedClass from "../FeaturedClass/FeaturedClass";
 import HomeStats from "../HomeStats/HomeStats";
 import JoinAsTeacher from "../JoinAsTeacher/JoinAsTeacher";
@@ -10,9 +12,23 @@ const Home = () => {
   return (
     <div className="border">
       <Banner></Banner>
+      <SectionTitle
+        subHeading="Top-Rated Classes "
+        heading={"Elite Learning Experience"}
+      ></SectionTitle>
       <FeaturedClass></FeaturedClass>
+      <SectionTitle
+        subHeading={"Explore Categories"}
+        heading={"Classes for everyone."}
+      ></SectionTitle>
+      <Categories></Categories>
+      <SectionTitle subHeading={"Expert educators await"}></SectionTitle>
       <Teachers></Teachers>
       <JoinAsTeacher></JoinAsTeacher>
+      <SectionTitle
+        subHeading={"Hear from learners"}
+        heading={"What Our Students Say"}
+      ></SectionTitle>
       <Reviews></Reviews>
       <HomeStats></HomeStats>
       <Footer></Footer>

@@ -47,7 +47,7 @@ const Navbar = ({ setSearch }) => {
     navigate("/allClasses");
   };
   return (
-    <div className="navbar justify-between w-full lg:max-w-7xl mx-auto border bg-slate-700 sticky">
+    <div className="navbar sticky bg-opacity-10 justify-between max-w-7xl mx-auto  bg-slate-700 ">
       <div className=" w-1/4  text-white">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -149,6 +149,7 @@ const Navbar = ({ setSearch }) => {
               type="text"
               name="search"
               className="grow"
+              required
               placeholder="Search  for class"
             />
             <button type="submit">

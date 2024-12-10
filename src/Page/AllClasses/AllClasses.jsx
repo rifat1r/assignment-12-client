@@ -45,17 +45,7 @@ const AllClasses = () => {
     setValue(newValue);
     setCategory(event.target.textContent);
   };
-  //classByTeacher
-  // useEffect(() => {
-  //   const getTeacherCategory = async () => {
-  //     if (classByTeacher) {
-  //       const res = await axiosPublic.get(`/teacherCategory/${classByTeacher}`);
-
-  //     }
-  //   };
-  //   getTeacherCategory();
-  // }, [classByTeacher, axiosPublic]);
-  // pagination
+ 
   const numberOfPages = countClass ? Math.ceil(countClass / size) : 0;
   const pages = [...Array(numberOfPages).keys()];
   const handleClassPerPage = (e) => {

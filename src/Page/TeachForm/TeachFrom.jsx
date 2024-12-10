@@ -7,6 +7,7 @@ import useTeacher from "../../hooks/useTeacher";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { useEffect } from "react";
+import SectionTitle from "../../Components/SectionTitle";
 
 const image_hosting_key = import.meta.env.VITE_IMGBB_PK;
 
@@ -116,7 +117,7 @@ const TeachFrom = () => {
                 }}
                 variant="outlined"
               >
-                GO BAck
+                GO Back
               </Button>
             </div>
           </div>
@@ -126,6 +127,7 @@ const TeachFrom = () => {
   }
   return (
     <div className="max-w-5xl mx-auto ">
+      <SectionTitle subHeading={"Join as a teacher"}></SectionTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-2 gap-5">
           <div className="form-control">
