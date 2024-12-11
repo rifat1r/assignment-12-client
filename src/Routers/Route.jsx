@@ -24,6 +24,7 @@ import TeacherRoute from "./TeacherRoute";
 import AdminHome from "../Page/Dashboard/AdminHome/AdminHome";
 import TeacherHome from "../Page/Dashboard/TeacherHome";
 import StudentHome from "../Page/Dashboard/StudentHome";
+import ClassByTeacher from "../Page/ClassByTeacher/ClassByTeacher";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
             <ClassDetails></ClassDetails>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/classByTeacher/:email",
+        element: <ClassByTeacher></ClassByTeacher>,
       },
       {
         path: "/payment",

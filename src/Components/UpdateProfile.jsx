@@ -6,6 +6,7 @@ import useUploadImage from "../hooks/useUploadImage";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { getAuth, updateProfile } from "firebase/auth";
+import SectionTitle from "./SectionTitle";
 
 const UpdateProfile = ({ userInfo, userId, refetch }) => {
   const auth = getAuth();
@@ -68,8 +69,9 @@ const UpdateProfile = ({ userInfo, userId, refetch }) => {
   return (
     <dialog ref={modalRef} id="my_modal_4" className="modal">
       <div className="modal-box w-11/12 max-w-3xl">
+        <SectionTitle subHeading={"Update Your Profile"}></SectionTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-2 gap-5 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>

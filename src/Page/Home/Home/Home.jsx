@@ -5,6 +5,7 @@ import Categories from "../Categories/Categories";
 import FeaturedClass from "../FeaturedClass/FeaturedClass";
 import HomeStats from "../HomeStats/HomeStats";
 import JoinAsTeacher from "../JoinAsTeacher/JoinAsTeacher";
+import Partners from "../Partners/Partners";
 import Reviews from "../Reviews/Reviews";
 import Teachers from "../Teachers/Teachers";
 
@@ -31,6 +32,8 @@ const Home = () => {
       ></SectionTitle>
       <Reviews></Reviews>
       <HomeStats></HomeStats>
+      <SectionTitle subHeading={"Our Partners"}></SectionTitle>
+      <Partners></Partners>
       <Footer></Footer>
     </div>
   );

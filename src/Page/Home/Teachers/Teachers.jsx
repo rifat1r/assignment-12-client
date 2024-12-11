@@ -11,8 +11,8 @@ const Teachers = () => {
   const { setClassByTeacher } = useOutletContext();
   const navigate = useNavigate();
   const handleTeacher = (teacher) => {
-    setClassByTeacher(teacher);
-    navigate("/allClasses");
+    setClassByTeacher(teacher.email);
+    navigate(`/classByTeacher/${teacher.email}`);
   };
   const axiosPublic = useAxiosPublic();
   const { data: teachers = [] } = useQuery({
@@ -47,7 +47,7 @@ const Teachers = () => {
   };
   return (
     <div className="slider-container max-w-7xl mx-auto ">
-      {teachers.length > 0 ? (
+      {teachers.length > 0 && (
         <Slider {...settings}>
           {teachers.map((teacher) => (
             <div key={teacher._id} className="p-4 h-full ">
@@ -65,7 +65,7 @@ const Teachers = () => {
                   <span className="font-medium"></span> {teacher.category}
                 </p>
                 <button
-                  onClick={() => handleTeacher(teacher.email)}
+                  onClick={() => handleTeacher(teacher)}
                   className="btn mt-2 btn-outline border-0 border-b-2 btn-sm bg-slate-400 bg-opacity-30 "
                 >
                   View Classes
@@ -75,8 +75,6 @@ const Teachers = () => {
             </div>
           ))}
         </Slider>
-      ) : (
-        <p>No teachers available.</p>
       )}
     </div>
   );

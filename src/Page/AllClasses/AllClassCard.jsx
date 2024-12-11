@@ -17,9 +17,9 @@ const AllClassCard = ({ aClass }) => {
     },
   });
   return (
-    <div className="w-96 mx-auto">
+    <div className="w-96 m-auto">
       <figure className="">
-        <img className="w-full h-64 object-cover " src={aClass.image} />
+        <img className="h-full w-full object-cover " src={aClass.image} />
       </figure>
       <div className="px-1 ">
         <h3 className="text-2xl font-semibold">{aClass.title}</h3>

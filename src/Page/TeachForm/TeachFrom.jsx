@@ -129,7 +129,7 @@ const TeachFrom = () => {
     <div className="max-w-5xl mx-auto ">
       <SectionTitle subHeading={"Join as a teacher"}></SectionTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
@@ -196,7 +196,7 @@ const TeachFrom = () => {
           {errors.category && (
             <p className="text-red-500 text-xl">Select your experience level</p>
           )}
-          <div className="form-control col-span-2">
+          <div className="form-control col-span-1 md:col-span-2">
             <label className="label">
               <span className="label-text">Title*</span>
             </label>

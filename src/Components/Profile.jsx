@@ -22,7 +22,7 @@ const Profile = () => {
   });
 
   return (
-    <div className="max-w-5xl mx-auto border flex gap-5">
+    <div className="max-w-5xl mx-auto border flex flex-col md:flex-row gap-5">
       <div className="avatar m-4">
         <div className=" h-44 w-44 ">
           <img

@@ -111,7 +111,12 @@ const StudentHome = () => {
                 <td>{aClass.title}</td>
                 <td>{aClass.teacherName}</td>
                 <td>{aClass.assignmentCount}</td>
-                <td title={aClass.submissionCount / aClass.assignmentCount}>
+                <td>
+                  {/* <span>{aClass.submissionCount / aClass.assignmentCount}</span> */}
+                  <span>
+                    {aClass.submissionCount}/{aClass.assignmentCount}
+                  </span>
+                  <br />
                   <progress
                     className="progress progress-info  w-32"
                     value={

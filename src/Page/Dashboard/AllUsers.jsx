@@ -88,7 +88,7 @@ const AllUsers = () => {
     });
   };
   return (
-    <div className="overflow-x-auto max-w-7xl">
+    <div className="overflow-x-auto max-w-7xl z-20">
       <div className="flex justify-start mb-6">
         <form onSubmit={handleSearch}>
           <label className="input input-bordered  rounded-none flex items-center gap-2 max-w-lg">
@@ -102,7 +102,7 @@ const AllUsers = () => {
           </label>
         </form>
       </div>
-      <table className="table table-zebra">
+      <table className="table table-zebra table-xs table-pin-rows table-pin-cols">
         {/* head */}
         <thead>
           <tr className="bg-base-200">

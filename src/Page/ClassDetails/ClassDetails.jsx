@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import { MdPayment } from "react-icons/md";
 import { FaDollarSign } from "react-icons/fa";
 import ReviewCard from "../../Components/ReviewCard";
+import { FaStar } from "react-icons/fa6";
 
 const ClassDetails = () => {
   const axiosSecure = useAxiosSecure();
@@ -34,6 +35,10 @@ const ClassDetails = () => {
       return res.data;
     },
   });
+  const avgRating = feedbacks.reduce(
+    (sum, feedback) => sum + feedback.rating,
+    0
+  );
   return (
     <div className=" max-w-7xl mx-auto ">
       <div className="flex gap-5 items-center">
@@ -51,6 +56,13 @@ const ClassDetails = () => {
               <FaDollarSign></FaDollarSign>
               Price: ${aClass.price}
             </p>
+            {feedbacks.length > 0 && (
+              <p className="flex items-center gap-1">
+                Average Rating : {(avgRating / feedbacks.length).toFixed(1)}
+                <FaStar className="text-amber-500 text-lg"></FaStar> (
+                {feedbacks.length})
+              </p>
+            )}
           </div>
           <div>
             <Link
@@ -84,7 +96,7 @@ const ClassDetails = () => {
         </div>
       </div>
       <div>
-        <h2>review: {feedbacks.length}</h2>
+        <h2 className="text-2xl font-semibold">Review: {feedbacks.length}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {feedbacks.map((feedback) => (
             <ReviewCard key={feedback._id} feedback={feedback}></ReviewCard>

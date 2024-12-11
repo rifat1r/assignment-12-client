@@ -1,4 +1,3 @@
-// import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgMenuLeft } from "react-icons/cg";
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
@@ -7,11 +6,18 @@ import { IoSearch } from "react-icons/io5";
 import useTeacher from "../../hooks/useTeacher";
 import useAdmin from "../../hooks/useAdmin";
 
-const Navbar = ({ setSearch }) => {
+const Navbar = ({ setSearch, setValue, setCategory }) => {
   const [isTeacher] = useTeacher();
   const [isAdmin] = useAdmin();
   const navigate = useNavigate();
   const { logout, user } = useAuth();
+
+  const resetFilters = (e) => {
+    e.preventDefault();
+    setCategory("All");
+    setValue(0);
+    setSearch("");
+  };
 
   const navLinks = (
     <>
@@ -36,7 +42,7 @@ const Navbar = ({ setSearch }) => {
           <NavLink to="/dashboard/studentHome">Dashboard</NavLink>
         </li>
       )}
-      <li>
+      <li onClick={resetFilters}>
         <NavLink to="/allClasses">All Classes</NavLink>
       </li>
     </>
@@ -47,9 +53,9 @@ const Navbar = ({ setSearch }) => {
     navigate("/allClasses");
   };
   return (
-    <div className="navbar sticky bg-opacity-10 justify-between max-w-7xl mx-auto  bg-slate-700 ">
+    <div className="navbar relative z-10   justify-between max-w-7xl mx-auto  bg-slate-700 ">
       <div className=" w-1/4  text-white">
-        <div className="dropdown">
+        <div className="dropdown z-10">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             {/* icon */}
             <CgMenuLeft className="text-2xl " />
@@ -63,7 +69,7 @@ const Navbar = ({ setSearch }) => {
         </div>
         <a
           href="/"
-          className=" text-3xl font-bold rounded-sm text-white px-2 py-1 cursor-pointer"
+          className=" text-xl font-bold rounded-sm text-white px-2 py-1 cursor-pointer"
         >
           eduManage
         </a>
@@ -142,7 +148,7 @@ const Navbar = ({ setSearch }) => {
         </ul>
       </div>
       {/* search bar */}
-      <div className="w-1/4 ml-6 justify-end  ">
+      <div className="w-1/4 ml-6 hidden md:flex justify-end  ">
         <form onSubmit={handleSearch}>
           <label className="input input-bordered h-9 rounded-none flex items-center gap-2">
             <input

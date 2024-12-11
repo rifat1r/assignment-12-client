@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const { user } = useAuth();
   return (
-    <div className="">
+    <div className="z-10">
       <div className="drawer md:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
@@ -39,37 +39,37 @@ const Dashboard = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-blue-200 text-base-content min-h-full w-60 p-4">
+          <ul className="menu bg-[#F5F5F5] text-base-content min-h-full bg-fixed w-72 p-4 text-xl ">
             {/* Sidebar content here */}
             {user && isAdmin && (
               <>
                 <li>
                   <NavLink to="/dashboard/adminHome">
-                    <FaHome></FaHome>
+                    <FaHome className="text-3xl mr-3"></FaHome>
                     Admin Home
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/teacherRequest">
-                    <FaListAlt></FaListAlt>
+                    <FaListAlt className="text-2xl mr-3"></FaListAlt>
                     Teacher Request
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/allUsers">
-                    <FaUsers></FaUsers>
+                    <FaUsers className="text-3xl mr-3"></FaUsers>
                     All Users
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/allClass">
-                    <FaBook></FaBook>
+                    <FaBook className="text-2xl mr-3"></FaBook>
                     All Classes
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/profile">
-                    <AiOutlineUser className="text-xl"></AiOutlineUser>
+                    <AiOutlineUser className="text-3xl mr-3"></AiOutlineUser>
                     Profile
                   </NavLink>
                 </li>
@@ -79,26 +79,26 @@ const Dashboard = () => {
               <>
                 <li>
                   <NavLink to="/dashboard/teacherHome">
-                    <FaHome className="text-xl" />
+                    <FaHome className="text-3xl mr-3" />
                     Teacher Home
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/myClass">
-                    <BiBook className="text-xl" />
+                    <BiBook className="text-3xl mr-3" />
                     My Class
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/addClass">
-                    <MdAddToPhotos className="text-xl" />
+                    <MdAddToPhotos className="text-3xl mr-3" />
                     Add Class
                   </NavLink>
                 </li>
 
                 <li>
                   <NavLink to="/dashboard/profile">
-                    <AiOutlineUser className="text-xl" />
+                    <AiOutlineUser className="text-3xl mr-3" />
                     Profile
                   </NavLink>
                 </li>
@@ -108,19 +108,19 @@ const Dashboard = () => {
               <>
                 <li>
                   <NavLink to="/dashboard/studentHome">
-                    <FaHome className="text-xl"></FaHome>
+                    <FaHome className="text-3xl mr-3"></FaHome>
                     Student Home
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/myEnrollClass">
-                    <FaUserPlus className="text-xl"></FaUserPlus>
+                    <FaUserPlus className="text-3xl mr-3"></FaUserPlus>
                     My enroll class
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/profile">
-                    <AiOutlineUser className="text-xl"></AiOutlineUser>
+                    <AiOutlineUser className="text-3xl mr-3"></AiOutlineUser>
                     Profile
                   </NavLink>
                 </li>
@@ -130,19 +130,19 @@ const Dashboard = () => {
             {/* normal routes */}
             <li>
               <NavLink to="/">
-                <FaHome className="text-xl"></FaHome>
+                <FaHome className="text-3xl mr-3"></FaHome>
                 User Home
               </NavLink>
             </li>
             <li>
               <NavLink to="/allClasses">
-                <FaBook className="text-lg"></FaBook>
+                <FaBook className="text-2xl mr-3"></FaBook>
                 All Classes
               </NavLink>
             </li>
             <li>
               <NavLink to="/dashboard/home">
-                <IoIosMail className="text-xl"></IoIosMail>
+                <IoIosMail className="text-3xl mr-3"></IoIosMail>
                 Contact
               </NavLink>
             </li>

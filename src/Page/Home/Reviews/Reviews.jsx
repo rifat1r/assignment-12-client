@@ -16,7 +16,7 @@ const Reviews = () => {
     },
   });
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto my-10">
       <Swiper
         slidesPerView={3}
         spaceBetween={20}

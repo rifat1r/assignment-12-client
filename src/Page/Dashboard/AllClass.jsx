@@ -140,15 +140,20 @@ const AllClass = () => {
                 </Button>
               </td>
               <th>
-                <Link state={{ classId: aClass._id }} to="/dashboard/progress">
-                  <Button
-                    disabled={aClass.status !== "approved"}
-                    variant="contained"
-                    size="small"
+                {aClass.status === "approved" ? (
+                  <Link
+                    state={{ classId: aClass._id }}
+                    to="/dashboard/progress"
                   >
+                    <Button variant="contained" size="small">
+                      Progress
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button disabled variant="contained" size="small">
                     Progress
                   </Button>
-                </Link>
+                )}
               </th>
             </tr>
           ))}

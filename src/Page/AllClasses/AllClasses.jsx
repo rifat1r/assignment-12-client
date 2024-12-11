@@ -2,9 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import AllClassCard from "./AllClassCard";
 import { Box, Button, Tab, Tabs } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import FilterByPrice from "../../Components/FilterByPrice";
+import { IoSearch } from "react-icons/io5";
 
 const AllClasses = () => {
   const [countClass, setCountClass] = useState(null);
@@ -12,27 +13,17 @@ const AllClasses = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [priceRange, setPriceRange] = useState({ min: 0, max: Infinity });
 
-  const { search, classByTeacher } = useOutletContext();
-  console.log("Teacher classes from context:", classByTeacher);
+  const { search, setSearch, category, setCategory, value, setValue } =
+    useOutletContext();
 
   // console.log("search", search);
-  const [category, setCategory] = useState("All");
-  const [value, setValue] = useState(0);
+
   const axiosPublic = useAxiosPublic();
   const { data: allClass = [], isPending } = useQuery({
-    queryKey: [
-      "class",
-      category,
-      search,
-      size,
-      currentPage,
-      priceRange,
-      classByTeacher,
-    ],
+    queryKey: ["class", category, search, size, currentPage, priceRange],
     queryFn: async () => {
-      const teacherQuery = classByTeacher ? `&teacher=${classByTeacher} ` : "";
       const res = await axiosPublic.get(
-        `/class?category=${category}&search=${search}&min=${priceRange.min}&max=${priceRange.max}&page=${currentPage}&size=${size}${teacherQuery}`
+        `/class?category=${category}&search=${search}&min=${priceRange.min}&max=${priceRange.max}&page=${currentPage}&size=${size}`
       );
       // setCountClass(res.data);
       // console.log("response", res.data);
@@ -40,12 +31,14 @@ const AllClasses = () => {
       return res.data.result;
     },
   });
+
   // console.log("tab", category);
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    // console.log("new tab value", newValue);
     setCategory(event.target.textContent);
   };
- 
+
   const numberOfPages = countClass ? Math.ceil(countClass / size) : 0;
   const pages = [...Array(numberOfPages).keys()];
   const handleClassPerPage = (e) => {
@@ -53,6 +46,7 @@ const AllClasses = () => {
     setSize(val);
     setCurrentPage(0);
   };
+
   if (isPending) {
     return (
       <div className="flex justify-center mt-36">
@@ -63,6 +57,26 @@ const AllClasses = () => {
 
   return (
     <div className="max-w-7xl mx-auto ">
+      <div className="flex md:hidden p-2">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault(); // Prevent page reload on form submit
+            setSearch(e.target.search.value); // Access value from the input field by name
+          }}
+        >
+          <label className="input input-bordered h-9 rounded-lg flex items-center gap-2 ">
+            <input
+              type="text"
+              name="search"
+              required
+              placeholder="Search  for class"
+            />
+            <button type="submit">
+              <IoSearch type="submit" className="text-2xl " />
+            </button>
+          </label>
+        </form>
+      </div>
       <div className="flex justify-between items-center">
         <h2 className="text-4xl"> All classes : {allClass.length} </h2>
         <div>
@@ -76,6 +90,7 @@ const AllClasses = () => {
           <FilterByPrice setPriceRange={setPriceRange}></FilterByPrice>
         </div>
       </div>
+
       <div className="mb-4">
         <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
           <Tabs

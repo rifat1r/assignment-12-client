@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useUploadImage from "../../hooks/useUploadImage";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
+import SectionTitle from "../../Components/SectionTitle";
 
 const AddClass = () => {
   const { user } = useAuth();
@@ -47,6 +48,7 @@ const AddClass = () => {
 
   return (
     <div className="w-full lg:w-3/4 ">
+      <SectionTitle className="" heading={"Add class"}></SectionTitle>
       <Class action={"Add Class"} getFormData={handlePost}></Class>
     </div>
   );
