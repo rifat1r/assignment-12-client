@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import SectionTitle from "../../Components/SectionTitle";
 
 const MyEnrollClass = () => {
   const { user } = useAuth();
@@ -15,17 +16,18 @@ const MyEnrollClass = () => {
   });
   return (
     <div className="max-w-7xl">
-      <p>My enroll class : {enrollClass.length}</p>
+      <SectionTitle heading={"ALL Enrolled classes"}></SectionTitle>
+      <p className="text-2xl my-3">My enroll class : {enrollClass.length}</p>
       <div className="grid grid-cols-1 lg:grid-cols-2  gap-5">
         {enrollClass.map((aClass) => (
           <div
             key={aClass._id}
-            className="card card-side card-bordered  shadow-xl "
+            className="card lg:card-side card-bordered  shadow-xl w-full "
           >
-            <figure className="w-1/2 lg:w-2/5 h-full">
+            <figure className="h-full">
               <img className=" h-full object-fill" src={aClass.image} />
             </figure>
-            <div className="m-3  w-1/2 lg:w-3/5 flex flex-col justify-between">
+            <div className="m-3  flex flex-col justify-between">
               <div className="">
                 <h2 className="card-title">{aClass.title}</h2>
                 <p className="text-blue-500">{aClass.name}</p>

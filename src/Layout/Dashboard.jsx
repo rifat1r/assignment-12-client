@@ -1,5 +1,5 @@
 import { FaBook, FaHome, FaListAlt, FaUserPlus, FaUsers } from "react-icons/fa";
-import { FaBarsStaggered } from "react-icons/fa6";
+import { FaBarsStaggered, FaCross } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
@@ -37,14 +37,13 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="drawer-side">
+        <div className="drawer-side z-10">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
           <ul className="menu bg-[#F5F5F5] text-base-content min-h-full bg-fixed w-72 p-4 text-xl ">
-            {/* Sidebar content here */}
             {user && isAdmin && (
               <>
                 <li>

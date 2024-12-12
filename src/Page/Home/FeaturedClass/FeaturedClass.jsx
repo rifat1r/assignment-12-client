@@ -13,7 +13,7 @@ const FeaturedClass = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: classes = [] } = useQuery({
+  const { data: classes = [], isPending: loading } = useQuery({
     queryKey: ["featuredClass"],
     queryFn: async () => {
       const res = await axiosPublic.get("/featuredClasses");
@@ -27,6 +27,13 @@ const FeaturedClass = () => {
       return res.data;
     },
   });
+  if (loading) {
+    return (
+      <div className="flex justify-center mt-36">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
       {classes.map((aClass) => (

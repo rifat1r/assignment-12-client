@@ -1,6 +1,6 @@
 const SectionTitle = ({ heading, subHeading }) => {
   return (
-    <div className=" mx-auto text-center md:w-4/12 my-8">
+    <div className=" mx-auto text-center md:w-4/12 mb-4">
       {subHeading && (
         <p className="text-yellow-600 text-xl mb-2 pb-2 border-b-4">
           ---{subHeading}---

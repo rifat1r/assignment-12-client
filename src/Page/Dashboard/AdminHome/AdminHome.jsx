@@ -39,7 +39,7 @@ const AdminHome = () => {
       }
     }
   };
-  const { data: stats = {} } = useQuery({
+  const { data: stats = {}, isPending: loading } = useQuery({
     queryKey: ["admin-stats"],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin-stats");
@@ -61,6 +61,13 @@ const AdminHome = () => {
 
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
+  if (loading) {
+    return (
+      <div className="flex justify-center mt-36">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
   return (
     <div className="max-w-7xl">
       <h1 className="text-4xl font-bold">Welcome Back, {user.displayName}</h1>

@@ -17,7 +17,7 @@ const Teachers = () => {
     navigate(`/classByTeacher/${teacher.email}`);
   };
   const axiosPublic = useAxiosPublic();
-  const { data: teachers = [] } = useQuery({
+  const { data: teachers = [], isPending: loading } = useQuery({
     queryKey: ["allTeachers"],
     queryFn: async () => {
       const res = await axiosPublic.get("/teachers");
@@ -49,6 +49,13 @@ const Teachers = () => {
       },
     ],
   };
+  if (loading) {
+    return (
+      <div className="flex justify-center mt-36">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
   return (
     <div className="slider-container max-w-7xl mx-auto ">
       <div className="relative">

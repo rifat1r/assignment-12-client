@@ -5,6 +5,7 @@ import Class from "../../Components/Class";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { useRef } from "react";
+import SectionTitle from "../../Components/SectionTitle";
 
 const UpdateClass = ({ id, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -49,6 +50,7 @@ const UpdateClass = ({ id, refetch }) => {
   return (
     <dialog ref={modalRef} id="my_modal_4" className="modal">
       <div className="modal-box w-11/12 max-w-3xl">
+        <SectionTitle subHeading={"Edit Your class"}></SectionTitle>
         <Class
           getFormData={handleUpdateClass}
           action={"Update Class"}

@@ -11,7 +11,7 @@ import { Pagination, Navigation } from "swiper/modules";
 
 const Banner = () => {
   const axiosPublic = useAxiosPublic();
-  const { data: bannerImage = [] } = useQuery({
+  const { data: bannerImage = [], isPending: loading } = useQuery({
     queryKey: ["bannerImage"],
     queryFn: async () => {
       const res = await axiosPublic.get("/bannerImage");
@@ -19,6 +19,13 @@ const Banner = () => {
     },
   });
   console.log("banner image", bannerImage);
+  if (loading) {
+    return (
+      <div className="flex justify-center mt-36">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
   return (
     <div className="max-w-7xl mx-auto z-10">
       <Swiper

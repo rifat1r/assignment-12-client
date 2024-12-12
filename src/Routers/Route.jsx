@@ -25,11 +25,13 @@ import AdminHome from "../Page/Dashboard/AdminHome/AdminHome";
 import TeacherHome from "../Page/Dashboard/TeacherHome";
 import StudentHome from "../Page/Dashboard/StudentHome";
 import ClassByTeacher from "../Page/ClassByTeacher/ClassByTeacher";
+import ErrorPage from "../Page/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

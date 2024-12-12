@@ -12,7 +12,7 @@ import Teachers from "../Teachers/Teachers";
 
 const Home = () => {
   return (
-    <div className="border">
+    <div className="">
       <Helmet>
         <title>EduManage | Home</title>
       </Helmet>

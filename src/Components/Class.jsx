@@ -27,7 +27,7 @@ const Class = ({ getFormData, action, aClass, id }) => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-2 gap-5 ">
+        <div className="grid grid-cols-1  md:grid-cols-2 gap-5 ">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
@@ -54,7 +54,6 @@ const Class = ({ getFormData, action, aClass, id }) => {
               placeholder="type here"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Price</span>
@@ -70,7 +69,6 @@ const Class = ({ getFormData, action, aClass, id }) => {
               <p className="text-red-500 text-xl">Price is required</p>
             )}
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Title</span>
@@ -86,15 +84,14 @@ const Class = ({ getFormData, action, aClass, id }) => {
               <p className="text-red-500 text-xl">Title is required</p>
             )}
           </div>
-
-          <div className="form-control col-span-2">
+          <div className="form-control col-span-1 md:col-span-2">
             <label className="label">
               <span className="label-text">Description</span>
             </label>
             <textarea
               {...register("description", { required: true })}
               type="text"
-              className="textarea textarea-bordered flex items-start gap-2 "
+              className="textarea textarea-bordered "
               placeholder="Description"
               defaultValue={aClass?.description}
             />
@@ -122,7 +119,7 @@ const Class = ({ getFormData, action, aClass, id }) => {
             {errors.image && (
               <p className="text-red-500 text-xl">Image is required</p>
             )}
-          </div>
+          </div>{" "}
           <div className="my-9">
             <button className="btn btn-block ">
               <MdAddToPhotos></MdAddToPhotos>

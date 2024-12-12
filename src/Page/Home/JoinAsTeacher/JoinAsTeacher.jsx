@@ -15,7 +15,7 @@ const JoinAsTeacher = () => {
         </div>
         <div className="w-full md:w-2/3 text-center md:text-left pr-5 text-white">
           <h2 className="text-4xl font-bold  mb-4">
-            Teach and Inspire with eduMange
+            Teach and Inspire with EduMange
           </h2>
           <p className="text-xl mb-6 ">
             Join our platform and become part of a global community of

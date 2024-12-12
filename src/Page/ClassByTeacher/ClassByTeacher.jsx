@@ -7,7 +7,7 @@ import AllClassCard from "../AllClasses/AllClassCard";
 const ClassByTeacher = () => {
   const { email } = useParams();
   const axiosPublic = useAxiosPublic();
-  const { data: teacher = {} } = useQuery({
+  const { data: teacher = {}, isPending: loading2 } = useQuery({
     queryKey: ["teacher", email],
 
     queryFn: async () => {
@@ -15,13 +15,20 @@ const ClassByTeacher = () => {
       return res.data;
     },
   });
-  const { data: classes = [] } = useQuery({
+  const { data: classes = [], isPending: loading } = useQuery({
     queryKey: ["classByTeacher", email],
     queryFn: async () => {
       const res = await axiosPublic.get(`/classByTeacher/${email}`);
       return res.data;
     },
   });
+  if (loading || loading2) {
+    return (
+      <div className="flex justify-center mt-36">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
   return (
     <div className="max-w-7xl mx-auto">
       <div className="border flex flex-col md:flex-row gap-5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white">

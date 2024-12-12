@@ -69,9 +69,9 @@ const Navbar = ({ setSearch, setValue, setCategory }) => {
         </div>
         <a
           href="/"
-          className=" text-xl font-bold rounded-sm text-white px-2 py-1 cursor-pointer"
+          className=" text-2xl font-bold rounded-sm text-white px-2 py-1 cursor-pointer"
         >
-          eduManage
+          EduManage
         </a>
         <div className="flex items-center  gap-3  ">
           <div className="dropdown dropdown-end ml-5">

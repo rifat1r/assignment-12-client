@@ -85,11 +85,6 @@ const TERModal = ({ id, classTitle }) => {
           </div>
         </form>
       </div>
-      <div className="modal-action">
-        <form method="dialog">
-          <button className="btn">Close</button>
-        </form>
-      </div>
     </dialog>
   );
 };
