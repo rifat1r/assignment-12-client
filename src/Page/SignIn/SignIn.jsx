@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const SignIn = () => {
   const [show, setShow] = useState(false);
@@ -47,6 +48,9 @@ const SignIn = () => {
   };
   return (
     <div className="hero bg-base-200 min-h-screen bg-[url('https://i.ibb.co.com/8B1HMRR/andrew-ridley-j-R4-Zf-ri-Ej-I-unsplash.jpg')]">
+      <Helmet>
+        <title>EduManage | Sign In</title>
+      </Helmet>
       <div className="hero-content flex-col ">
         <div className="text-center ">
           <h1 className="text-7xl font-bold text-white mb-4">Sign In</h1>

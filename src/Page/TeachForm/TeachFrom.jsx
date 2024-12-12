@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { useEffect } from "react";
 import SectionTitle from "../../Components/SectionTitle";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const image_hosting_key = import.meta.env.VITE_IMGBB_PK;
 
@@ -19,6 +20,7 @@ const TeachFrom = () => {
   console.log("status-------", isTeacher);
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const {
     reset,
     register,
@@ -69,7 +71,7 @@ const TeachFrom = () => {
         experience: data.experience,
         image: imgRes.data.data.display_url,
       };
-      const res = await axiosPublic.post("/teacherRequest", teacherInfo);
+      const res = await axiosSecure.post("/teacherRequest", teacherInfo);
       console.log(res.data);
       if (res.data.insertedId) {
         reset();
@@ -211,14 +213,19 @@ const TeachFrom = () => {
             )}
           </div>
         </div>
-        <input
-          type="file"
-          className="file-input file-input-bordered file-input-info w-full max-w-xs my-6"
-          {...register("image", { required: true })}
-        />
-        {errors.image && (
-          <p className="text-red-500 text-xl">Image is required</p>
-        )}
+        <div className="my-6">
+          <label className="label">
+            <span className="label-text">Select your photo*</span>
+          </label>
+          <input
+            type="file"
+            className="file-input file-input-bordered file-input-info w-full max-w-xs "
+            {...register("image", { required: true })}
+          />
+          {errors.image && (
+            <p className="text-red-500 text-xl">Image is required</p>
+          )}
+        </div>
 
         <div className="text-end">
           <button

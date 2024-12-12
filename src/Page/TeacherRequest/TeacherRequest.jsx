@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import Status from "../../Components/Status";
+import { Helmet } from "react-helmet-async";
 
 const TeacherRequest = () => {
   const axiosSecure = useAxiosSecure();

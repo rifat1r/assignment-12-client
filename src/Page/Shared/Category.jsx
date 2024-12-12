@@ -6,7 +6,10 @@ import { Parallax } from "react-parallax";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+// ..
+AOS.init();
 
 const Category = ({
   category,
@@ -47,7 +50,10 @@ const Category = ({
   };
 
   return (
-    <div className="rounded-lg shadow-lg p-4 flex flex-col gap-6 bg-white">
+    <div
+      data-aos="fade-up"
+      className="rounded-lg shadow-lg p-4 flex flex-col gap-6 bg-white"
+    >
       <div className="relative overflow-hidden rounded-lg">
         <Parallax
           blur={{ min: -50, max: 50 }}

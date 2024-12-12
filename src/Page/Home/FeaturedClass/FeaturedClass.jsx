@@ -4,6 +4,10 @@ import { Button, Rating, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
+AOS.init();
 
 const FeaturedClass = () => {
   const axiosPublic = useAxiosPublic();
@@ -26,7 +30,11 @@ const FeaturedClass = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
       {classes.map((aClass) => (
-        <div key={aClass._id} className="card w-96 rounded-sm  m-auto">
+        <div
+          data-aos="zoom-in"
+          key={aClass._id}
+          className="card w-96 rounded-sm  m-auto"
+        >
           <figure>
             <img className="h-full w-full object-cover" src={aClass.image} />
           </figure>

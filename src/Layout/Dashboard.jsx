@@ -8,6 +8,7 @@ import useAdmin from "../hooks/useAdmin";
 import { MdAddToPhotos } from "react-icons/md";
 import { BiBook } from "react-icons/bi";
 import { AiOutlineUser } from "react-icons/ai";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const [isTeacher] = useTeacher();
@@ -15,6 +16,9 @@ const Dashboard = () => {
   const { user } = useAuth();
   return (
     <div className="z-10">
+      <Helmet>
+        <title>EduManage | Dashboard</title>
+      </Helmet>
       <div className="drawer md:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">

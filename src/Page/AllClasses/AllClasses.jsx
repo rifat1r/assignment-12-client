@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import FilterByPrice from "../../Components/FilterByPrice";
 import { IoSearch } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 
 const AllClasses = () => {
   const [countClass, setCountClass] = useState(null);
@@ -57,6 +58,9 @@ const AllClasses = () => {
 
   return (
     <div className="max-w-7xl mx-auto ">
+      <Helmet>
+        <title>EduManage | All Classes</title>
+      </Helmet>
       <div className="flex md:hidden p-2">
         <form
           onSubmit={(e) => {

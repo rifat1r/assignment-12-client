@@ -15,6 +15,7 @@ import {
 } from "react-simple-captcha";
 import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
@@ -93,6 +94,9 @@ const SignUp = () => {
 
   return (
     <div className="hero  min-h-screen bg-[url('https://i.ibb.co.com/8B1HMRR/andrew-ridley-j-R4-Zf-ri-Ej-I-unsplash.jpg')]">
+      <Helmet>
+        <title>EduManage | Sign Up</title>
+      </Helmet>
       <div className="hero-content flex-col ">
         <div className="text-center lg:text-left">
           <h1 className="text-7xl font-bold text-white mb-4">Sign Up now!</h1>

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../Components/SectionTitle";
 import Footer from "../../Shared/Footer";
 import Banner from "../Banner/Banner";
@@ -12,6 +13,9 @@ import Teachers from "../Teachers/Teachers";
 const Home = () => {
   return (
     <div className="border">
+      <Helmet>
+        <title>EduManage | Home</title>
+      </Helmet>
       <Banner></Banner>
       <SectionTitle
         subHeading="Top-Rated Classes "

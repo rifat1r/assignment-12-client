@@ -38,7 +38,7 @@ const Categories = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto  grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div className="max-w-7xl mx-auto  grid grid-cols-1 lg:grid-cols-2 justify-center gap-4">
       <Category
         catName={"Data science"}
         image={"https://i.ibb.co.com/9bg07Js/Data-Science-vs-Big-Data-vs.jpg"}
