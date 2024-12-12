@@ -28,7 +28,7 @@ const AllUsers = () => {
       return res.data;
     },
   });
-  const { data: adminStatus = [] } = useQuery({
+  const { data: adminStatus = [], refetch: adminStatusRefetch } = useQuery({
     queryKey: ["adminStatus"],
     queryFn: async () => {
       const res = await axiosSecure.get("/adminStatus");
@@ -75,6 +75,7 @@ const AllUsers = () => {
         const res = await axiosSecure.patch(`users/${user._id}`);
         console.log(res.data);
         if (res.data.modifiedCount > 0) {
+          adminStatusRefetch();
           refetch();
           Swal.fire({
             title: `${user.name} is Admin now`,
