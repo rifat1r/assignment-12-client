@@ -41,14 +41,11 @@ const ClassDetails = () => {
   );
   return (
     <div className=" max-w-7xl mx-auto ">
-      <div className="flex gap-5 items-center">
-        <div className="w-2/5">
-          <img
-            className="w-full h-72 object-cover object-center"
-            src={aClass.image}
-          />
+      <div className="flex flex-col lg:flex-row gap-5 items-center justify-between p-2">
+        <div className="w-full lg:w-2/5">
+          <img className="w-full  object-cover " src={aClass.image} />
         </div>
-        <div className="w-3/5  space-y-2 flex flex-col justify-between">
+        <div className="w-full lg:w-3/5  space-y-2 flex flex-col justify-between">
           <div>
             <h2 className="text-3xl">{aClass.title}</h2>
             <p>{aClass.description}</p>

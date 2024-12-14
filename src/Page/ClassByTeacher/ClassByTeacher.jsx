@@ -31,7 +31,7 @@ const ClassByTeacher = () => {
   }
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="border flex flex-col md:flex-row gap-5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
+      <div className="border flex flex-col md:flex-row items-center gap-5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white pb-2">
         <div className="avatar m-4">
           <div className=" h-52 w-52 ">
             <img

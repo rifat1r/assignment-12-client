@@ -69,7 +69,7 @@ const TeacherRequest = () => {
     });
   };
   return (
-    <div className="max-w-7xl">
+    <div className="max-w-7xl p-8">
       <div className="overflow-x-auto">
         <table className="table table-xs table-pin-rows table-pin-cols">
           {/* head */}

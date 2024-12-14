@@ -15,7 +15,7 @@ const MyEnrollClass = () => {
     },
   });
   return (
-    <div className="max-w-7xl">
+    <div className="max-w-7xl p-6">
       <SectionTitle heading={"ALL Enrolled classes"}></SectionTitle>
       <p className="text-2xl my-3">My enroll class : {enrollClass.length}</p>
       <div className="grid grid-cols-1 lg:grid-cols-2  gap-5">

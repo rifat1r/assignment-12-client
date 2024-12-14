@@ -79,7 +79,7 @@ const CheckoutForm = ({ price, classId }) => {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Thank you for the taka poisa",
+            title: "Enrolled Successfully!",
             showConfirmButton: false,
             timer: 1500,
           });

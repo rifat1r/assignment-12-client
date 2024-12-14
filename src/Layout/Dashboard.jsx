@@ -32,7 +32,7 @@ const Dashboard = () => {
               <FaBarsStaggered className="text-xl"></FaBarsStaggered>
             </label>
           </div>
-          <div className="flex-1 p-8">
+          <div className="flex-1 ">
             <Outlet></Outlet>
           </div>
         </div>

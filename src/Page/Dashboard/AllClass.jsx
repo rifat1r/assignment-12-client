@@ -67,7 +67,7 @@ const AllClass = () => {
     });
   };
   return (
-    <div className="overflow-x-auto max-w-7xl">
+    <div className="overflow-x-auto max-w-7xl p-6">
       <table className="table table-xs table-pin-rows table-pin-cols">
         <thead>
           <tr>

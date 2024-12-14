@@ -48,13 +48,13 @@ const MyClass = () => {
   };
 
   return (
-    <div>
-      <h2>My Class : {myClass.length}</h2>
+    <div className=" w-full lg:w-3/4 ">
+      <h2 className="text-3xl  mb-5 px-4">My Classes : {myClass.length}</h2>
       <div className="grid grid-cols-1  lg:grid-cols-2 gap-5">
         {myClass.map((aClass) => (
           <div
             key={aClass._id}
-            className="card card-compact  w-96 rounded-md shadow-2xl border"
+            className="card card-compact   rounded-md shadow-2xl border"
           >
             <div className="flex items-center  gap-3 p-4">
               <div className="avatar">
@@ -79,7 +79,7 @@ const MyClass = () => {
               </div>
             </div>
             <figure>
-              <img className="h-56 w-full object-cover" src={aClass.image} />
+              <img className=" w-full object-cover" src={aClass.image} />
             </figure>
             <div className="card-body">
               <h2 className="card-title">{aClass.title}</h2>

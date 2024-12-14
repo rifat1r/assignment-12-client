@@ -35,8 +35,10 @@ const StudentHome = () => {
     );
   }
   return (
-    <div className="max-w-6xl">
-      <h2 className="text-3xl font-bold">Welcome back, {user.displayName}</h2>
+    <div className="max-w-6xl p-6">
+      <h2 className="text-3xl font-bold pb-3">
+        Welcome back, {user.displayName}
+      </h2>
       <div className="space-x-3 space-y-2">
         <div className="stats shadow bg-blue-400 bg-opacity-20">
           <div className="stat flex  items-center">

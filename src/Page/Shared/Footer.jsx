@@ -7,7 +7,6 @@ const Footer = () => {
     <div className="max-w-7xl mx-auto">
       <footer className="footer bg-base-200 text-base-content p-10">
         <nav>
-          <h2>EduManage</h2>
           <img className="w-24" src={icon} alt="" />
           <div className="mt-4">
             <h2 className="ml-3 font-medium text-gray-500 -mb-2">Find Us On</h2>

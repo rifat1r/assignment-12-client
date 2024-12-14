@@ -69,7 +69,7 @@ const AdminHome = () => {
     );
   }
   return (
-    <div className="max-w-7xl">
+    <div className="max-w-7xl p-8">
       <h1 className="text-4xl font-bold">Welcome Back, {user.displayName}</h1>
       <div className="space-x-4 space-y-3">
         <div className="stats shadow bg-blue-400 bg-opacity-20">
