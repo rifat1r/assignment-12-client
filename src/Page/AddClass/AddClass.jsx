@@ -47,7 +47,7 @@ const AddClass = () => {
   };
 
   return (
-    <div className="w-full lg:w-3/4 p-4">
+    <div className="w-full lg:w-3/4 p-6">
       <SectionTitle className="" heading={"Add class"}></SectionTitle>
       <Class action={"Add Class"} getFormData={handlePost}></Class>
     </div>

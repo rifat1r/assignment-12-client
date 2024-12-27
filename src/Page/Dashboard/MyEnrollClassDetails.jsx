@@ -56,7 +56,7 @@ const MyEnrollClassDetails = () => {
     }
   };
   return (
-    <div className="max-w-6xl">
+    <div className="max-w-6xl p-5">
       <div className="mb-3">
         <Button
           onClick={() => document.getElementById("my_modal_2").showModal()}

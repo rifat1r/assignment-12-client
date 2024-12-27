@@ -48,13 +48,13 @@ const MyClass = () => {
   };
 
   return (
-    <div className=" w-full lg:w-3/4 ">
+    <div className=" w-full lg:w-3/4 p-5">
       <h2 className="text-3xl  mb-5 px-4">My Classes : {myClass.length}</h2>
       <div className="grid grid-cols-1  lg:grid-cols-2 gap-5">
         {myClass.map((aClass) => (
           <div
             key={aClass._id}
-            className="card card-compact   rounded-md shadow-2xl border"
+            className="card card-compact   rounded-md shadow-2xl border w-96 m-auto"
           >
             <div className="flex items-center  gap-3 p-4">
               <div className="avatar">

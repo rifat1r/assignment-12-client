@@ -22,9 +22,9 @@ const MyEnrollClass = () => {
         {enrollClass.map((aClass) => (
           <div
             key={aClass._id}
-            className="card lg:card-side card-bordered  shadow-xl w-full "
+            className="card lg:card-side card-bordered  shadow-xl w-96 lg:w-full m-auto  h-full"
           >
-            <figure className="h-full">
+            <figure className="h-full ">
               <img className=" h-full object-fill" src={aClass.image} />
             </figure>
             <div className="m-3  flex flex-col justify-between">

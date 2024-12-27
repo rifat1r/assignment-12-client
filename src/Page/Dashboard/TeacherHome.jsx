@@ -25,7 +25,7 @@ const TeacherHome = () => {
     );
   }
   return (
-    <div className="p-4">
+    <div className="p-4 max-w-7xl">
       <h2 className="text-3xl font-bold mb-5">
         Welcome back, {user.displayName}
       </h2>

@@ -5,11 +5,6 @@ import { useLocation, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { HiDocumentText } from "react-icons/hi";
-import {
-  FaChalkboardTeacher,
-  FaCheckCircle,
-  FaUserFriends,
-} from "react-icons/fa";
 import { FiCheckCircle } from "react-icons/fi";
 import { AiOutlineUpload } from "react-icons/ai";
 
